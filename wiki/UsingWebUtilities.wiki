@@ -1,4 +1,4 @@
-#summary Using webutilities for different purposes.
+#summary Usage details of webutilities provided components.
 #labels Featured,Phase-Deploy
 
 = Introduction =
