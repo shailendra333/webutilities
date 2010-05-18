@@ -21,6 +21,11 @@ import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -83,7 +88,24 @@ import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
  *  <b>lineBreak</b> - equivalent to YUICompressor --line-break. Insert a line break after the specified column number
  *  <b>noMunge</b> - equivalent to YUICompressor --nomunge. Minify only, do not obfuscate. Default false.
  *  <b>preserveSemi</b> - equivalent to YUICompressor --preserve-semi. Preserve all semicolons. Default false. 
- *  <b>disableOptimizations</b> - equivalent to YUICompressor --disable-optimizations. Disable all micro optimizations. Default false. 
+ *  <b>disableOptimizations</b> - equivalent to YUICompressor --disable-optimizations. Disable all micro optimizations. Default false.
+ *  <b>useCache</b> - to cache the earlier minified contents and serve from cache. Default true. 
+ * </pre>
+ * <h3>Notes on Cache</h3> 
+ * <p>If you have not set useCache parameter to false then cache will be used and contents will be always served from cache if found.
+ * Sometimes you may not want to use cache or you may want to evict the cache then using URL parameters you can do that.
+ * </p>
+ * <h4>URL Parameters to skip or evict the cache</h4>
+ * <pre>
+ * <b>_skipcache_</b> - The JS or CSS request URL if contains this parameters the cache will not be used for it.
+ * <b>_dbg_</b> - same as above _skipcache_ parameters.
+ * <b>_expirecache_</b> - The cache will be cleaned completely. All existing cached contents will be cleaned.
+ * </pre>
+ * <pre>
+ * <b>Eg.</b>
+ * &lt;link rel="StyleSheet" href="/myapp/css/common.css<b>?_dbg=1</b>"/&gt;
+ * or
+ * &lt;script language="JavaScript" src="/myapp/js/prototype.js<b>?_expirecache_=1</b>"&gt;&lt;/script&gt;
  * </pre>
  * <h3>Dependency</h3>
  * <p>The <code>YUIMinFilter</code> depends on servlet-api and YUICompressor jar to be in the classpath.</p>
@@ -91,8 +113,7 @@ import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
  * <p><b>yuicompressor-x.y.z.jar</b> - Download and put appropriate version of this jar in your classpath (in WEB-INF/lib)</p>
  * <h3>Limitations</h3> 
  * <p>Current version of <code>YUIMinFilter</code> <b>does not support charset</b> option.</p>
- * <p>It also currently <b>does not support caching of minified contents.</b> Every time filter runs on the resource, the minificatons process happens even if it was minified earlier.<p>
- * <p> To avoid this problem and as a best practice you should add appropriate expires header on static resources so that browser caches them and doesn't request them again and again.
+ * <p> As a best practice you should also add appropriate expires header on static resources so that browser caches them and doesn't request them again and again.
  * You can use the <code>JSCSSMergeServlet</code> from <code>webutilities.jar</code> to add expires header on JS and CSS. It also helps combines multiple JS or CSS requests in one HTTP request. See <code>JSCSSMergeServlet</code> for details.   
  * </p>
  * @author rpatil
@@ -113,9 +134,17 @@ public class YUIMinFilter implements Filter{
 	
 	private boolean disableOptimizations = false;
 	
+	private boolean useCahce = true;
+	
+	private Map<String, String> cache = Collections.synchronizedMap(new LinkedHashMap<String, String>());
+	
 	@Override
 	public void destroy() {
 		this.config = null;
+	}
+	
+	private void expireCache(){
+		this.cache.clear();
 	}
 	
 	@Override
@@ -124,12 +153,31 @@ public class YUIMinFilter implements Filter{
 		HttpServletRequest rq = (HttpServletRequest)req;
 		HttpServletResponse rs = (HttpServletResponse)resp;
 		String url = rq.getRequestURI().toLowerCase();
+		if(req.getParameter("_expirecache_") != null){
+			this.expireCache();
+		}
+		if(config != null && (url.endsWith(".js") || url.endsWith(".json") || url.endsWith(".css")) ){
 
-		if(config != null && url.endsWith(".js") || url.endsWith(".json") || url.endsWith(".css") || config == null){
-			PrintWriter out = resp.getWriter();
+			boolean useCache = this.useCahce && req.getParameter("_skipcache_") == null && req.getParameter("_dbg_") == null;
+
+			Writer out = new StringWriter();
+			if(!useCache){
+				out = resp.getWriter();
+			}
 			CharResponseWrapper wrapper = new CharResponseWrapper(rs);
 			//Let the response be generated
-			chain.doFilter(req, wrapper);
+			chain.doFilter(req, wrapper);//!FIXME if we get minified data from cache then we don't need to call this. But we are calling this to set resp headers. 
+
+			if(useCache){
+				String fromCache = cache.get(url);
+				if(fromCache != null){
+					Writer writer = resp.getWriter();
+					writer.write(fromCache);
+					writer.flush();
+					writer.close();
+					return;
+				}
+			}
 			StringReader sr = new StringReader(new String(wrapper.toString().getBytes(),this.charset));
 			//work on generated response
 			if(rq.getRequestURI().endsWith(".js") || rq.getRequestURI().endsWith(".json") || (wrapper.getContentType() != null && (wrapper.getContentType().equals("text/javascript") || wrapper.getContentType().equals("application/json")))) {
@@ -140,6 +188,10 @@ public class YUIMinFilter implements Filter{
 				compressor.compress(out, this.lineBreak);
 			}else{
 				out.write(wrapper.toString());
+			}
+			if(useCache){
+				cache.put(url, out.toString());
+				resp.getWriter().write(out.toString());
 			}
 			out.flush();
 			out.close();
@@ -160,6 +212,7 @@ public class YUIMinFilter implements Filter{
 		this.noMunge = ifValidBoolean(this.config.getInitParameter("noMunge"), this.noMunge);
 		this.preserveSemi = ifValidBoolean(this.config.getInitParameter("preserveSemi"), this.preserveSemi);
 		this.disableOptimizations = ifValidBoolean(this.config.getInitParameter("disableOptimizations"), this.disableOptimizations);
+		this.useCahce = ifValidBoolean(this.config.getInitParameter("useCache"), this.useCahce);
 		
 	}
 	

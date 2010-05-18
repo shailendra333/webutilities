@@ -19,8 +19,12 @@ package com.googlecode.webutilities;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -50,7 +54,12 @@ import javax.servlet.http.HttpServletResponse;
  *		&lt;param-name&gt;expiresMinutes&lt;/param-name&gt;
  *		&lt;param-value&gt;7200&lt;/param-value&gt; &lt;!-- 5 days --&gt;
  * 	&lt;/init-param&gt;
- * &lt;/servlet&gt;
+ *	&lt;!-- This init param is also optional and default value is true. Set it false to override. --&gt; 
+ * 	&lt;init-param&gt;
+ *		&lt;param-name&gt;useCache&lt;/param-name&gt;
+ *		&lt;param-value&gt;false&lt;/param-value&gt; 
+ * 	&lt;/init-param&gt;
+ *  &lt;/servlet&gt;
  * ...
  * </pre>
  * Map this servlet to serve your JS and CSS resources
@@ -78,17 +87,37 @@ import javax.servlet.http.HttpServletResponse;
  * <p>
  * Also if you wanted to serve them minified all together then you can add <code>YUIMinFilter</code> on them. See <code>YUIMinFilter</code> from <code>webutilities.jar</code> for details.
  * </p>
- * <h3>Init Parameter</h3>
+ * <h3>Init Parameters</h3>
  * <p>
- * The init parameter is optional and has default value of 7 days. This value is relative from current time. Use negative value to expire early in the past.
+ * Both init parameters are optional.
+ * </p>
+ * <p> 
+ * <b>expiresMinutes</b> has default value of 7 days. This value is relative from current time. Use negative value to expire early in the past.
  * Ideally you should never be using negative value otherwise you won't be able to <b>take advantage of browser caching for static resources</b>. 
  * </p>
  * <pre>
- *  <b>expiresMinutes</b> - Number of minutes (added to current time) to be set as Expires header 
+ *  <b>expiresMinutes</b> - Relative number of minutes (added to current time) to be set as Expires header 
+ *  <b>useCache</b> - to cache the earlier merged contents and serve from cache. Default true. 
  * </pre>
  * <h3>Dependency</h3> 
  * <p>Servlet and JSP api (mostly provided by servlet container eg. Tomcat).</p>
  * <p><b>servlet-api.jar</b> - Must be already present in your webapp classpath</p>
+ * <h3>Notes on Cache</h3> 
+ * <p>If you have not set useCache parameter to false then cache will be used and contents will be always served from cache if found.
+ * Sometimes you may not want to use cache or you may want to evict the cache then using URL parameters you can do that.
+ * </p>
+ * <h4>URL Parameters to skip or evict the cache</h4>
+ * <pre>
+ * <b>_skipcache_</b> - The JS or CSS request URL if contains this parameters the cache will not be used for it.
+ * <b>_dbg_</b> - same as above _skipcache_ parameters.
+ * <b>_expirecache_</b> - The cache will be cleaned completely. All existing cached contents will be cleaned.
+ * </pre>
+ * <pre>
+ * <b>Eg.</b>
+ * &lt;link rel="StyleSheet" href="/myapp/css/common,calendar,aquaskin.css<b>?_dbg=1</b>"/&gt;
+ * or
+ * &lt;script language="JavaScript" src="/myapp/js/prototype,controls,dragdrop,myapp.js<b>?_expirecache_=1</b>"&gt;&lt;/script&gt;
+ * </pre>
  * <h3>Limitations</h3> 
  * <p>
  * The multiple JS or CSS files <b>can be combined together in one request if they are in same parent path</b>. eg. <code><b>/myapp/js/a.js</b></code>, <code><b>/myapp/js/b.js</b></code> and <code><b>/myapp/js/c.js</b></code> 
@@ -104,21 +133,64 @@ public class JSCSSMergeServlet extends HttpServlet{
 	
 	private long expiresMinutes = 7*24*60; //+ or - minutes to be added as expires header from current time. default 7 days
 	
+	private boolean useCahce = true;
+	
+	private Map<String, String> cache = Collections.synchronizedMap(new LinkedHashMap<String, String>());
+	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		this.expiresMinutes = ifValidNumber(config.getInitParameter("expiresMinutes"), this.expiresMinutes);
 	}
 	
+	private String addHeaders(HttpServletRequest req,HttpServletResponse resp){
+		String url = req.getRequestURI().toLowerCase();
+		if(url.endsWith(".json")){
+			resp.setContentType("application/json");
+		}else if(url.endsWith(".js")){
+			resp.setContentType("text/javascript");
+		}else if(url.endsWith(".css")){
+			resp.setContentType("text/css");
+		}
+		resp.addDateHeader("Expires", new Date().getTime() + expiresMinutes*60*1000);
+		resp.addDateHeader("Last-Modified", new Date().getTime());
+		return url;
+	}
+	
+	private void expireCache(){
+		this.cache.clear();
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String url = req.getRequestURI().toLowerCase().replace(req.getContextPath(), ""); 
+		
+		String url = addHeaders(req, resp);
+		if(req.getParameter("_expirecache_") != null){
+			this.expireCache();
+		}
+		boolean useCache = this.useCahce && req.getParameter("_skipcache_") == null && req.getParameter("_dbg_") == null;
+		
+		if(useCache){
+			String fromCache = cache.get(req.getRequestURI());
+			if(fromCache != null){
+				Writer writer = resp.getWriter();
+				writer.write(fromCache);
+				writer.flush();
+				writer.close();
+				return;
+			}
+		}
+		url = url.replace(req.getContextPath(), ""); 
 		//Split multiple files with comma eg. if URL is http://server/context/js/a,b,c.js then a.js, b.js and c.js have to loaded together
 		String path = super.getServletContext().getRealPath(url.substring(0,url.lastIndexOf("/")));
 		String file = url.substring(url.lastIndexOf("/")+1);
 		
+		Writer out = new StringWriter();
+		if(!useCache){
+			out = resp.getWriter();
+		}
 		String[] files = file.split(",");
 		for(String f : files){
 			if(url.endsWith(".json") && !f.endsWith(".json")){
@@ -132,23 +204,14 @@ public class JSCSSMergeServlet extends HttpServlet{
 			}
 			String fullPath = path + File.separator + f;
 			FileInputStream fis = null;
-			PrintWriter out = resp.getWriter();
-			resp.addDateHeader("Expires", new Date().getTime() + expiresMinutes*60*1000);
-			resp.addDateHeader("Last-Modified", new Date().getTime());
-			if(f.endsWith(".json")){
-				resp.setContentType("application/json");
-			}else if(f.endsWith(".js")){
-				resp.setContentType("text/javascript");
-			}else if(f.endsWith(".css")){
-				resp.setContentType("text/css");
-			}
 			try{
-				fis = new FileInputStream(fullPath);
+				File fl = new File(fullPath);
+				fis = new FileInputStream(fl);
 				int c;
 				while((c = fis.read()) != -1){
 					out.write(c);
-					out.flush();
 				}
+				out.flush();
 			}catch (Exception e) {
 				
 				log("Exception in "+JSCSSMergeServlet.class.getSimpleName()+":" + e);
@@ -161,6 +224,11 @@ public class JSCSSMergeServlet extends HttpServlet{
 					out.close();
 				}
 			}
+			
+		}
+		if(useCache){
+			cache.put(req.getRequestURI(), out.toString());
+			resp.getWriter().write(out.toString());
 		}
 		
 	}
