@@ -3,10 +3,10 @@
 
 = Introduction =
 
-WebUtilities provides Set of classes implemented as J2EE components (Servlet, Filter and CustomTag) to help you speed up your front end performance. These components can be used to do some JS,CSS optimizations in running webapp like grouping multiple resources in one call or compressing them on the fly using YUI compressor.
+webutilities provides Set of classes implemented as J2EE components (Servlet, Filter and CustomTag) to help you speed up your front end performance. These components can be used to do some JS,CSS optimizations in running webapp like grouping multiple resources in one call or compressing them on the fly using YUI compressor.
 
 
-= What is provided by WebUtilities? =
+= What is provided by webutilities? =
 
   * *`JSCSSMergeServlet`* - to merge multiple JS or CSS and serve them in one HTTP request. 
   * *`YUIMinFilter`* - to compress JS or CSS resources on the fly using YUI compressor.
@@ -35,6 +35,11 @@ Declare this servlet in your *`web.xml`* ( web descriptor file)
 		<param-name>expiresMinutes</param-name>
 		<param-value>7200</param-value> <!-- 5 days -->
  	</init-param>
+	<!-- This init param is also optional and default value is true. Set it false to override.-->
+        <init-param>
+		<param-name>useCache</param-name>
+		<param-value>false</param-value> 
+ 	</init-param>
  </servlet>
 }}}
  
@@ -61,6 +66,40 @@ To serve multiple CSS files through one HTTP request
 }}}
  
 Also if you wanted to serve them minified all together then you can add *`YUIMinFilter`* on them. See `YUIMinFilter`  for details.
+
+==Init Parameters==
+Both init parameters are optional.
+
+*expiresMinutes* has default value of 7 days. This value is relative from current time. Use negative value to expire early in the past. Ideally you should never be using negative value otherwise you won't be able to take advantage of browser caching for static resources.
+
+  * *expiresMinutes* - Relative number of minutes (added to current time) to be set as Expires header 
+  * *useCache* - to cache the earlier merged contents and serve from cache. Default true. 
+ 
+==Dependencies==
+
+  * *servlet-api.jar* - Must be already present in your webapp classpath
+
+==Notes on Cache==
+
+If you have not set *useCache* init parameter to false then cache will be used and contents will be always served from cache if found. Sometimes you may not want to use cache or you may want to evict the cache then using URL parameters you can do that.
+
+===URL Parameters to skip or evict the cache===
+
+  * * _skipcache_* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
+  * * _dbg_*- same as above _skipcache_ parameters.
+  * * _expirecache_* - The cache will be cleaned completely. All existing cached contents will be cleaned.
+ 
+ Eg.
+{{{
+ <link rel="StyleSheet" href="/myapp/css/common,calendar,aquaskin.css?_dbg=1"/>
+}}}
+ or
+{{{
+ <script language="JavaScript" src="/myapp/js/prototype,controls,dragdrop,myapp.js?_expirecache_=1"></script>
+}}}
+ 
+==Limitations==
+The multiple JS or CSS files can be combined together in one request if they are in same parent path. eg. /myapp/js/a.js, /myapp/js/b.js and /myapp/js/c.js can be combined together as /myapp/js/a,b,c.js. If they are not in common path then they can not be combined in one request. Same applies for CSS too.
 
 ----
 =_`YUIMinFilter`_ =
@@ -108,6 +147,7 @@ All the init parameters are optional and are as explained below.
   * *noMunge* - equivalent to YUICompressor --nomunge. Minify only, do not obfuscate. Default false.
   * *preserveSemi* - equivalent to YUICompressor --preserve-semi. Preserve all semicolons. Default false. 
   * *disableOptimizations* - equivalent to YUICompressor --disable-optimizations. Disable all micro optimizations. Default false. 
+  * *useCache* - to cache the earlier minified contents and serve from cache. Default true. 
 
 ==Dependencies==
 
@@ -116,13 +156,30 @@ The `YUIMinFilter` depends on servlet-api and YUICompressor jar to be in the cla
   * *servlet-api.jar* - Must be already present in your webapp classpath
   * *yuicompressor-x.y.z.jar* - Download and put appropriate version of this jar in your classpath (in WEB-INF/lib)
 
+==Notes on Cache==
+
+If you have not set *useCache* init parameter to false then cache will be used and contents will be always served from cache if found. Sometimes you may not want to use cache or you may want to evict the cache then using URL parameters you can do that.
+
+===URL Parameters to skip or evict the cache===
+
+  * * _skipcache_* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
+  * * _dbg_*- same as above _skipcache_ parameters.
+  * * _expirecache_* - The cache will be cleaned completely. All existing cached contents will be cleaned.
+ 
+ Eg.
+{{{
+ <link rel="StyleSheet" href="/myapp/css/common.css?_dbg=1"/>
+}}}
+ or
+{{{
+ <script language="JavaScript" src="/myapp/js/prototype.js?_expirecache_=1"></script>
+}}}
+
 ==Limitations==
 
 Current version of `YUIMinFilter` *does not support charset option*.
 
-It also currently *does not support caching of minified contents*. Every time filter runs on the resource, the minificatons process happens even if it was minified earlier.
-
-To avoid this problem and as a best practice you should add appropriate expires header on static resources so that browser caches them and doesn't request them again and again. You can use the `JSCSSMergeServlet` to add expires header on JS and CSS. It also helps combines multiple JS or CSS requests in one HTTP request. See JSCSSMergeServlet for details.
+As a best practice you should also add appropriate expires header on static resources so that browser caches them and doesn't request them again and again. You can use the `JSCSSMergeServlet` to add expires header on JS and CSS. It also helps combines multiple JS or CSS requests in one HTTP request. See JSCSSMergeServlet for details.
 
 ----
 =_`YuiMinTag`_ =
