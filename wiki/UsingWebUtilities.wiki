@@ -107,7 +107,6 @@ If you have not set *useCache* init parameter to false then cache will be used a
 ==Limitations==
 The multiple JS or CSS files can be combined together in one request if they are in same parent path. eg. /myapp/js/a.js, /myapp/js/b.js and /myapp/js/c.js can be combined together as /myapp/js/a,b,c.js. If they are not in common path then they can not be combined in one request. Same applies for CSS too.
 
-----
 = Minify/Compress external JS and CSS files on the fly using YUI Compressor =
 ==`YUIMinFilter` ==
 
