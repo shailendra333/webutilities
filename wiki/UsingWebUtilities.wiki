@@ -1,6 +1,5 @@
-#summary Usage details of webutilities provided components.
+#summary Usage details of webutilities.
 #labels Featured,Phase-Deploy
-
 = Introduction =
 
 webutilities provides Set of classes implemented as J2EE components (Servlet, Filter and CustomTag) to help you speed up your front end performance. These components can be used to do some JS,CSS optimizations in running webapp like grouping multiple resources in one call or compressing them on the fly using YUI compressor.
@@ -8,9 +7,9 @@ webutilities provides Set of classes implemented as J2EE components (Servlet, Fi
 
 = What is provided by webutilities? =
 
-  * *`JSCSSMergeServlet`* - to merge multiple JS or CSS and serve them in one HTTP request. 
-  * *`YUIMinFilter`* - to compress JS or CSS resources on the fly using YUI compressor.
-  * *`YuiMinTag`* - Custom tag to compress inline JS and CSS code using YUI compressor in JSPs. 
+  * *[JSCSSMergeServlet]* - to merge multiple JS or CSS and serve them in one HTTP request. 
+  * *[YUIMinFilter]* - to compress JS or CSS resources on the fly using YUI compressor.
+  * *[YuiMinTag]* - Custom tag to compress inline JS and CSS code using YUI compressor in JSPs. 
 
 More details and usage of each one is mentioned below.
 ----
