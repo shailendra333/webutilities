@@ -3,7 +3,7 @@
 = Table of Contents =
 
   * [#Introduction Introduction]
-  * [#JSCSSMergeServlet Merge multiple JS or CSS file in one HTTP request]
+  * [#JSCSSMergeServlet Merge multiple JS or CSS files in one HTTP request]
   * [#YUIMinFilter Minify/Compress external JS and CSS files on the fly using YUI Compressor]
   * [#YuiMinTag Compress inline JS or CSS code using YUI Compressor]
 
@@ -28,7 +28,7 @@ Using *`JSCSSMergeServet`* the multiple JS or CSS resources can be grouped toget
 
 ==Usage==
 
-Put the *webutilities-x.y.z.jar* in your classpath (WEB-INF/lib folder of your webapp).
+Put the *[http://code.google.com/p/webutilities/downloads/detail?name=webutilities-0.0.2.jar&can=2&q= webutilities-x.y.z.jar]* in your classpath (WEB-INF/lib folder of your webapp).
 
 Declare this servlet in your *`web.xml`* ( web descriptor file)
 
@@ -116,7 +116,7 @@ The *`YUIMinFilter`* is implemented as Servlet Filter to enable on the fly minif
 
 ==Usage==
 
-Put the *webutilities-x.y.z.jar*  and *yuicompressor-x.y.z.jar* (See dependency mentioned below) in your classpath (WEB-INF/lib folder of your webapp).
+Put the *[http://code.google.com/p/webutilities/downloads/detail?name=webutilities-0.0.2.jar&can=2&q= webutilities-x.y.z.jar]* and *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* (See dependency mentioned below) in your classpath (WEB-INF/lib folder of your webapp).
 
 Declare this Filter in your *`web.xml`* ( web descriptor file)
 
@@ -196,7 +196,7 @@ The *`YuiMinTag`* is the JSP custom tag to expose the YUICompressor functionalit
 
 ==Usage==
 
-Put the *webutilities-x.y.z.jar*  and *yuicompressor-x.y.z.jar* (See dependency mentioned below) in your classpath (WEB-INF/lib folder of your webapp).
+Put the *[http://code.google.com/p/webutilities/downloads/detail?name=webutilities-0.0.2.jar&can=2&q= webutilities-x.y.z.jar]* and **[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* (See dependency mentioned below) in your classpath (WEB-INF/lib folder of your webapp).
 
 Delcare the taglib and prefix in your JSP file
 
