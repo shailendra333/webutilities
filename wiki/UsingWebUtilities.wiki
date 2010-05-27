@@ -7,9 +7,9 @@ webutilities provides Set of classes implemented as J2EE components (Servlet, Fi
 
 = What is provided by webutilities? =
 
-  * *[UsingWebUtilities#JSCSSMergeServlet]* - to merge multiple JS or CSS and serve them in one HTTP request. 
-  * *[YUIMinFilter]* - to compress JS or CSS resources on the fly using YUI compressor.
-  * *[YuiMinTag]* - Custom tag to compress inline JS and CSS code using YUI compressor in JSPs. 
+  * *[#JSCSSMergeServlet JSCSSMergeServlet]* - to merge multiple JS or CSS and serve them in one HTTP request. 
+  * *[#YUIMinFilter YUIMinFilter]* - to compress JS or CSS resources on the fly using YUI compressor.
+  * *[#YuiMinTag YuiMinTag]* - Custom tag to compress inline JS and CSS code using YUI compressor in JSPs. 
 
 More details and usage of each one is mentioned below.
 ----
