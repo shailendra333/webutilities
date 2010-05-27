@@ -11,14 +11,14 @@
 
 *webutilities* provides Set of classes implemented as J2EE components ([#JSCSSMergeServlet Servlet], [#YUIMinFilter Filter] and [#YuiMinTag CustomTag]) to help you speed up your front end performance. These components can be used to do some JS,CSS optimizations in running webapp like grouping multiple resources in one call or compressing them on the fly using YUI compressor.
 
-=  =
+Currently it has following components which can use easily used in J2EE webapp.
 
   * *[#JSCSSMergeServlet JSCSSMergeServlet]* - to merge multiple JS or CSS and serve them in one HTTP request. 
   * *[#YUIMinFilter YUIMinFilter]* - to compress JS or CSS resources on the fly using YUI compressor.
   * *[#YuiMinTag YuiMinTag]* - Custom tag to compress inline JS and CSS code using YUI compressor in JSPs. 
 
 More details and usage of each one is mentioned below.
-----
+
 = Merge multiple JS or CSS file in one HTTP request =
 ==`JSCSSMergeServlet` ==
 
@@ -188,7 +188,6 @@ Current version of `YUIMinFilter` *does not support charset option*.
 
 As a best practice you should also add appropriate expires header on static resources so that browser caches them and doesn't request them again and again. You can use the `JSCSSMergeServlet` to add expires header on JS and CSS. It also helps combines multiple JS or CSS requests in one HTTP request. See JSCSSMergeServlet for details.
 
-----
 = Compress inline JS or CSS code using YUI Compressor = 
 ==`YuiMinTag`==
 
