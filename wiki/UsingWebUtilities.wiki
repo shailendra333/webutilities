@@ -1,5 +1,5 @@
 #summary User documentation of webutilities.
-#labels Featured,Phase-Deploy
+#labels Featured,Phase-Deploy,Using-Webutilities
 = Table of Contents =
 
   * [#Introduction Introduction]
@@ -160,7 +160,7 @@ All the init parameters are optional and are as explained below.
 The `YUIMinFilter` depends on servlet-api and YUICompressor jar to be in the classpath.
 
   * *servlet-api.jar* - Must be already present in your webapp classpath
-  * *yuicompressor-x.y.z.jar* - Download and put appropriate version of this jar in your classpath (in WEB-INF/lib)
+  * *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* - Download and put appropriate version of this jar in your classpath (in WEB-INF/lib)
 
 ==Notes on Cache==
 
@@ -238,7 +238,7 @@ The `YuiMinTag` also supports the different attributes similar to YUICompressor'
 The `YuiMinTag` depends on jsp-api and YUICompressor jar to be in the classpath.
 
   * *jsp-api.jar* - Must be already present in your webapp classpath
-  * *yuicompressor-x.y.z.jar* - Download and put appropriate version of this jar in your classpath (in WEB-INF/lib)
+  * *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* - Download and put appropriate version of this jar in your classpath (in WEB-INF/lib)
 
 ==Limitations==
 
