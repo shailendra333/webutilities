@@ -24,7 +24,7 @@ More details and usage of each one is mentioned below.
 
 == Details ==
 
-Using *`JSCSSMergeServet`* the multiple JS or CSS resources can be grouped together (by adding comma) in one HTTP call. It also has option to add appropriate expires header to take advantage of browser caching.
+Using *`JSCSSMergeServet`* the multiple JS or CSS resources can be grouped together (by adding comma) in one HTTP call. It also has an option to add appropriate expires header to take advantage of browser caching.
 
 ==Usage==
 
@@ -91,13 +91,13 @@ If you have not set *useCache* init parameter to false then cache will be used a
 
 ===URL Parameters to skip or evict the cache===
 
-  * * _skipcache_* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
-  * * _dbg_*- same as above _skipcache_ parameters.
-  * * _expirecache_* - The cache will be cleaned completely. All existing cached contents will be cleaned.
+  * * `_skipcache_`* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
+  * * `_dbg_`*- same as above _skipcache_ parameter.
+  * * `_expirecache_`* - The cache will be cleaned completely. All existing cached contents will be cleaned.
  
  Eg.
 {{{
- <link rel="StyleSheet" href="/myapp/css/common,calendar,aquaskin.css?_dbg=1"/>
+ <link rel="StyleSheet" href="/myapp/css/common,calendar,aquaskin.css?_dbg_=1"/>
 }}}
  or
 {{{
@@ -168,13 +168,13 @@ If you have not set *useCache* init parameter to false then cache will be used a
 
 ===URL Parameters to skip or evict the cache===
 
-  * * _skipcache_* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
-  * * _dbg_*- same as above _skipcache_ parameters.
-  * * _expirecache_* - The cache will be cleaned completely. All existing cached contents will be cleaned.
+  * * `_skipcache_`* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
+  * * `_dbg_`*- same as above _skipcache_ parameter.
+  * * `_expirecache_`* - The cache will be cleaned completely. All existing cached contents will be cleaned.
  
  Eg.
 {{{
- <link rel="StyleSheet" href="/myapp/css/common.css?_dbg=1"/>
+ <link rel="StyleSheet" href="/myapp/css/common.css?_dbg_=1"/>
 }}}
  or
 {{{
