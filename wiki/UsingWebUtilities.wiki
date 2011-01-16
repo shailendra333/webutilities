@@ -17,14 +17,14 @@ Currently it has following components which can use easily used in J2EE webapp.
   * *[#YUIMinFilter YUIMinFilter]* - to compress JS or CSS resources on the fly using YUI compressor.
   * *[#YuiMinTag YuiMinTag]* - Custom tag to compress inline JS and CSS code using YUI compressor in JSPs. 
 
-More details and usage of each one is mentioned below.
+More details and usage of each one is mentioned below. If you facing any issues, please feel free to report [http://code.google.com/p/webutilities/issues/entry here].
 
 = Merge multiple JS or CSS file in one HTTP request =
 ==`JSCSSMergeServlet` ==
 
 == Details ==
 
-Using *`JSCSSMergeServet`* the multiple JS or CSS resources can be grouped together (by adding comma) in one HTTP call. It also has an option to add appropriate expires header to take advantage of browser caching.
+Using *`JSCSSMergeServlet`* the multiple JS or CSS resources can be grouped together (by adding comma) in one HTTP call. It also has an option to add appropriate expires header to take advantage of browser caching.
 
 ==Usage==
 
@@ -34,8 +34,8 @@ Declare this servlet in your *`web.xml`* ( web descriptor file)
 
 {{{
  <servlet>
- 	<servlet-name>JSCSSMergeServet</servlet-name>
- 	<servlet-class>com.googlecode.webutilities.JSCSSMergeServet</servlet-class>
+ 	<servlet-name>JSCSSMergeServlet</servlet-name>
+ 	<servlet-class>com.googlecode.webutilities.JSCSSMergeServlet</servlet-class>
  	<!-- This init param is optional and default value is minutes for 7 days in future. To expire in the past use negative value. --> 
  	<init-param>
 		<param-name>expiresMinutes</param-name>
@@ -52,7 +52,7 @@ Declare this servlet in your *`web.xml`* ( web descriptor file)
 Map this servlet to serve your JS and CSS resources
 {{{
  <servlet-mapping>
-   <servlet-name>JSCSSMergeServet</servlet-name>
+   <servlet-name>JSCSSMergeServlet</servlet-name>
    <url-pattern>*.js</url-pattern>
    <url-pattern>*.json</url-pattern>
    <url-pattern>*.css</url-pattern>
