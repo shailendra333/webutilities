@@ -1,0 +1,91 @@
+= Minimize HTTP Requests =
+
+Using *`JSCSSMergeServlet`* multiple JS or CSS files can be served together in one HTTP call. It also has an option to add appropriate expires header to take advantage of browser caching. 
+
+==Configure==
+
+Declare this servlet in your *`web.xml`* ( web descriptor file)
+
+{{{
+ <servlet>
+ 	<servlet-name>JSCSSMergeServlet</servlet-name>
+ 	<servlet-class>com.googlecode.webutilities.servlets.JSCSSMergeServlet</servlet-class>
+ 	<!-- This init param is optional and default value is minutes for 7 days in future. --> 
+ 	<init-param>
+		<param-name>expiresMinutes</param-name>
+		<param-value>14400</param-value> <!-- 10 days -->
+ 	</init-param>
+	<!-- This init param is also optional and default value is true. Set it false to override.-->
+        <init-param>
+		<param-name>useCache</param-name>
+		<param-value>false</param-value> 
+ 	</init-param>
+ </servlet>
+}}}
+ 
+Map this servlet to serve your JS and CSS resources
+{{{
+ <servlet-mapping>
+   <servlet-name>JSCSSMergeServlet</servlet-name>
+   <url-pattern>*.js</url-pattern>
+   <url-pattern>*.json</url-pattern>
+   <url-pattern>*.css</url-pattern>
+ </servlet-mapping>
+}}}
+ 
+==Use==
+
+In your web pages (HTML or JSP files) combine your multiple JS or CSS in one request as shown below.
+
+To serve multiple JS files (from same or different folder on server) through one HTTP request. Only last resource should end with appropriate extension.  
+{{{
+ <!-- To Serve following four JS files in one request
+
+  1. /appContext/js/libs/prototype.js
+  2. /appContext/js/controls/controls.js 
+  3. /appContext/js/controls/dragdrop.js 
+  4. /appContext/js/utils/util.js    -->
+
+ <script language="JavaScript" src="/appContext/js/libs/prototype,../controls/controls,dragdrop,../utils/util.js"></script>
+
+}}}
+ 
+To serve multiple CSS files through one HTTP request
+
+{{{
+  <!-- To Serve following 3 CSS files in one request
+
+  1. /appContext/css/common.css
+  2. /appContext/css/aqua/calendar.css
+  3. /appContext/css/aqua/skin.css   -->
+
+ <link rel="StyleSheet" href="/appContext/css/common,/css/aqua/calendar,skin.css"/>
+}}}
+ 
+Also if you wanted to serve them minified all together then you can also add *`YUIMinFilter`*. 
+
+== Customize ==
+
+Both init parameters of this Servlet are optional.
+
+  * *expiresMinutes* - Relative number of minutes (added to current time) to be set as Expires header. Default 10080. 
+  * *useCache* - to cache the earlier merged contents and serve from cache if found. Default true. 
+ 
+===Notes on Cache===
+
+If you have not set *useCache* init parameter to false then cache will be used and contents will be always served from cache if found. Sometimes you may not want to use cache or you may want to evict the cache then using URL parameters you can do that.
+
+*URL Parameters to skip or evict the cache*
+
+  * * `_skipcache_`* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
+  * * `_dbg_`*- same as above _skipcache_ parameter.
+  * * `_expirecache_`* - The cache will be cleaned completely. All existing cached contents will be cleaned.
+ 
+ Eg.
+{{{
+ <link rel="StyleSheet" href="/appContext/css/common,/css/aqua/calendar,skin.css?_dbg_=1"/>
+}}}
+ or
+{{{
+ <script language="JavaScript" src="/appContext/js/libs/prototype,../controls/controls,dragdrop,../utils/util.js?_expirecache_=1"></script>
+}}}
