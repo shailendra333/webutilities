@@ -87,5 +87,5 @@ If you have not set *useCache* init parameter to false then cache will be used a
 }}}
  or
 {{{
- <script language="JavaScript" src="/appContext/js/libs/prototype,../controls/controls,dragdrop,../utils/util.js?_expirecache_=1"></script>
+ <script language="JavaScript" src="/appContext/js/libs/prototype,../utils/util.js?_expirecache_=1"></script>
 }}}
