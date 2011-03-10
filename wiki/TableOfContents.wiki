@@ -1,11 +1,10 @@
   * [WebUtilities About]
-  * HOWTO with Examples
-    * [MinimizeHTTPRequests Minimize HTTP Requests]
-    * [AddExpiresHeader Add Expires Header]
-    * [MinifyJSCSSFiles Minify JS/CSS files]
-    * [MinifyJSCSSCodeBlocks Minify inline JS/CSS code]
-    * [CompressionFilter Enable Compression]
-    * [SpecifyCharEncoding Specify Character Encoding]
+  * [MinimizeHTTPRequests Minimize HTTP Requests]
+  * [AddExpiresHeader Add Expires Header]
+  * [MinifyJSCSSFiles Minify JS/CSS files]
+  * [MinifyJSCSSCodeBlocks Minify inline JS/CSS code]
+  * [CompressionFilter Enable Compression]
+  * [SpecifyCharEncoding Specify Character Encoding]
   * By Components
     * Servlets
       * [MinimizeHTTPRequests JSCSSMergeServlet] 
