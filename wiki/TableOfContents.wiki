@@ -2,7 +2,33 @@
     * [WebUtilities#Introduction Introduction]
     * [WebUtilities#Features Features]
     * [WebUtilities#Get_started Get Started]
+
   * [MinimizeHTTPRequests Minimize HTTP Requests]
     * [MinimizeHTTPRequests#Configure Configure]
     * [MinimizeHTTPRequests#Use Use]
     * [MinimizeHTTPRequests#Customize Customize]
+
+  * [AddExpiresHeader Add Expires/Cache-Control Headers]
+    * [AddExpiresHeader#Configure Configure]
+    * [AddExpiresHeader#Use Use]
+    * [AddExpiresHeader#Customize Customize]
+
+  * [MinifyJSCSSFiles Minify JS/CSS files]
+    * [MinifyJSCSSFiles#Configure Configure]
+    * [MinifyJSCSSFiles#Use Use]
+    * [MinifyJSCSSFiles#Customize Customize]
+
+  * [MinifyJSCSSCodeBlocks Minify inline JS/CSS code]
+    * [MinifyJSCSSCodeBlocks#Configure Configure]
+    * [MinifyJSCSSCodeBlocks#Use Use]
+    * [MinifyJSCSSCodeBlocks#Customize Customize]
+
+  * [GZIPComponents Compress Response Contents (gzip/compress/deflate)]
+    * [GZIPComponents#Configure Configure]
+    * [GZIPComponents#Use Use]
+    * [GZIPComponents#Customize Customize]
+
+  * [SpecifyCharEncoding Specify Character Encoding]
+    * [SpecifyCharEncoding#Configure Configure]
+    * [SpecifyCharEncoding#Use Use]
+    * [SpecifyCharEncoding#Customize Customize]
