@@ -19,4 +19,4 @@ Let's see how to apply those best practices in your application and speed it up 
 
 To get started you will need to add latest *[http://code.google.com/p/webutilities/downloads/list webutilities-x.y.z.jar]* and *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* to your J2EE web project (by putting in WEB-INF/lib folder of your webapp). *WebUtilities* uses [http://developer.yahoo.com/yui/compressor/ YUICompressor] to minify JavaScript and CSS files on the fly.
 
-Use the left navigation to get the configuration, usage and customization of each component in details.
+Use left navigation to get the configuration, usage and customization of each component in details.
