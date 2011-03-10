@@ -1,0 +1,66 @@
+#sidebar TableOfContents
+
+*`YUIMinFilter`* is implemented as Servlet Filter to enable on the fly minification of JS and CSS resources using YUICompressor internally. JS and CSS resources can be minified runtime by adding this filter. It also uses cache for better performance. It minifies once and adds to cache so that next time it doesn't minify same resource again but simply returns from the cache.
+
+==Configure==
+
+Declare this Filter in your *`web.xml`* ( web descriptor file)
+
+{{{
+ <filter>
+ 	<filter-name>yuiMinFilter</filter-name>
+ 	<filter-class>com.googlecode.webutilities.yuimin.YUIMinFilter</filter-class>
+ 	<!-- All the init params are optional and are equivalent to YUICompressor command line options --> 
+ 	<init-param>
+		<param-name>lineBreak</param-name>
+		<param-value>8000</param-value>
+ 	</init-param>
+ </filter>
+}}}
+ 
+Map this filter on your JS and CSS resources
+
+{{{
+ <filter-mapping>
+   <filter-name>yuiMinFilter</filter-name>
+   <url-pattern>*.js</url-pattern>
+   <url-pattern>*.json</url-pattern>
+   <url-pattern>*.css</url-pattern>
+ </filter-mapping>
+}}}
+
+== Use == 
+Once it is configured on js, css extensions, it served those resources minified on the fly when requested. There is no anything else needed. If you have also configured merge servlet then those multiple merged JS or CSS will also be minified on the fly using this.
+
+==Customize==
+
+All the init parameters are optional and are as explained below.
+
+  * *lineBreak* - equivalent to YUICompressor --line-break. Insert a line break after the specified column number
+  * *noMunge* - equivalent to YUICompressor --nomunge. Minify only, do not obfuscate. Default false.
+  * *preserveSemi* - equivalent to YUICompressor --preserve-semi. Preserve all semicolons. Default false. 
+  * *disableOptimizations* - equivalent to YUICompressor --disable-optimizations. Disable all micro optimizations. Default false. 
+  * *useCache* - to cache the earlier minified contents and serve from cache. Default true. 
+
+===Notes on Cache===
+
+If you have not set *useCache* init parameter to false then cache will be used by default and contents will be always served from cache if found. Sometimes you may not want to use cache or you may want to evict the cache then using URL parameters you can do that.
+
+*URL Parameters to skip or evict the cache*
+
+  * * `_skipcache_`* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
+  * * `_dbg_`*- same as above _skipcache_ parameter.
+  * * `_expirecache_`* - The cache will be cleaned completely. All existing cached contents will be cleaned.
+ 
+ Eg.
+{{{
+ <link rel="StyleSheet" href="/myapp/css/common.css?_dbg_=1"/>
+}}}
+ or
+{{{
+ <script language="JavaScript" src="/myapp/js/prototype.js?_expirecache_=1"></script>
+}}}
+
+===Limitations===
+
+Current version of `YUIMinFilter` *does not support charset option*.
