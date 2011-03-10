@@ -8,7 +8,7 @@
     * [MinimizeHTTPRequests#Use Use]
     * [MinimizeHTTPRequests#Customize Customize]
 
-  * [AddExpiresHeader Add Expires/Cache-Control Headers]
+  * [AddExpiresHeader Add Expires Header]
     * [AddExpiresHeader#Configure Configure]
     * [AddExpiresHeader#Use Use]
     * [AddExpiresHeader#Customize Customize]
@@ -23,10 +23,10 @@
     * [MinifyJSCSSCodeBlocks#Use Use]
     * [MinifyJSCSSCodeBlocks#Customize Customize]
 
-  * [GZIPComponents Compress Response Contents (gzip/compress/deflate)]
-    * [GZIPComponents#Configure Configure]
-    * [GZIPComponents#Use Use]
-    * [GZIPComponents#Customize Customize]
+  * [CompressionFilter Enable Compression]
+    * [CompressionFilter#Configure Configure]
+    * [CompressionFilter#Use Use]
+    * [CompressionFilter#Customize Customize]
 
   * [SpecifyCharEncoding Specify Character Encoding]
     * [SpecifyCharEncoding#Configure Configure]
