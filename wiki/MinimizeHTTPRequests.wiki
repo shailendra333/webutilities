@@ -1,8 +1,8 @@
 #sidebar TableOfContents
-<wiki:toc max_depth="2" />
 Using *`JSCSSMergeServlet`* multiple JS or CSS files can be served together in one HTTP call. It also has an option to add appropriate expires header to take advantage of browser caching. 
 
-==Configure==
+<wiki:toc max_depth="2" />
+==Configuration==
 
 Declare this servlet in your *`web.xml`* ( web descriptor file)
 
@@ -33,7 +33,7 @@ Map this servlet to serve your JS and CSS resources
  </servlet-mapping>
 }}}
  
-==Use==
+==Usage==
 
 In your web pages (HTML or JSP files) combine your multiple JS or CSS in one request as shown below.
 
@@ -64,14 +64,14 @@ To serve multiple CSS files through one HTTP request
  
 Also if you wanted to serve them minified all together then you can also add *`YUIMinFilter`*. 
 
-== Customize ==
+== Customization ==
 
 Both init parameters of this Servlet are optional.
 
   * *expiresMinutes* - Relative number of minutes (added to current time) to be set as Expires header. Default 10080. 
   * *useCache* - to cache the earlier merged contents and serve from cache if found. Default true. 
  
-===Notes on Cache===
+*Notes on Cache*
 
 If you have not set *useCache* init parameter to false then cache will be used and contents will be always served from cache if found. Sometimes you may not want to use cache or you may want to evict the cache then using URL parameters you can do that.
 
