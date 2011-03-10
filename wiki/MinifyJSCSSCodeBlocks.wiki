@@ -1,0 +1,47 @@
+#sidebar TableOfContents
+
+*`YuiMinTag`* is the JSP custom tag to expose YUICompressor functionality in the JSP. Using the YuiMinTag inline CSS, JS code can also be compressed.
+
+==Configure==
+
+Declare the taglib and prefix in your JSP file.
+
+{{{
+<%@ taglib uri="http://webutilities.googlecode.com/taglib/yuimin" prefix="ymin" %>
+}}}
+ 
+==Use==
+
+Then use the ymin:minify tag to minify your inline JS.
+
+{{{
+ <ymin:minify type="js">
+        //...
+  	// your inline uncompressed JS
+  	//... 	
+ </ymin:minify>
+}}}
+ 
+You can also similarly use this tag to minify your inline style/CSS.
+
+{{{
+ <ymin:minify type="css">
+  	//...
+  	// your inline uncompressed CSS
+  	//...
+ </ymin:minify>
+}}}
+
+==Customize==
+
+It supports attributes similar to YUICompressor's command line options. Below are the attributes and their explanations. All these attributes are optional except *type*.
+  
+  * *type* - possible values are js or css. The only required attribute. Usage as seen above.
+  * *lineBreak* - equivalent to YUICompressor --line-break. Insert a line break after the specified column number
+  * *noMunge* - equivalent to YUICompressor --nomunge. Minify only, do not obfuscate. Default false.
+  * *preserveSemi* - equivalent to YUICompressor --preserve-semi. Preserve all semicolons. Default false. 
+  * *disableOptimizations* - equivalent to YUICompressor --disable-optimizations. Disable all micro optimizations. Default false. 
+
+===Limitations===
+
+Current version of `YuiMinTag` *does not support charset option*.
