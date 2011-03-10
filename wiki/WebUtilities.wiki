@@ -1,0 +1,243 @@
+_*WebUtilities* is a library of Java classes implemented as J2EE web components (Servlets, Filters, Tags etc.) to speed up the front-end of a web application on the fly._
+<wiki:toc max_depth="2" />
+= Introduction =
+Tools such as [http://developer.yahoo.com/yslow/ YSlow] or [http://code.google.com/speed/page-speed/ Page Speed] can be used to measure the client side performance. To improve the performance you have to apply the best practices [http://developer.yahoo.com/performance/rules.html suggested by these tools]. *WebUtilities* provides inbuilt components to apply following best practices in your web application.  
+
+==Features ==
+
+ * [#Minimize_HTTP_Requests Minimize HTTP Requests]
+ * [#Add_an_Expires_or_a_Cache-Control_Header Add an Expires or a Cache-Control Header]
+ * [#Minify_JavaScript_and_CSS_Files Minify JavaScript and CSS Files] 
+ * [#Minify_Inline_JavaScript_and_CSS_Code Minify Inline JavaScript and CSS Code] 
+ * [#Gzip_Components Gzip Components] (since version 0.0.4)
+
+Let's see how to apply those best practices in your application and speed it up :)
+
+==Get started==
+
+To get started you will need to add latest *[http://code.google.com/p/webutilities/downloads/list webutilities-x.y.z.jar]* and *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* to your J2EE web project (by putting in WEB-INF/lib folder of your webapp). *WebUtilities* uses [http://developer.yahoo.com/yui/compressor/ YUICompressor] to minify JavaScript and CSS files on the fly.
+
+Now below is the description of each component, it's configuration, usage and customization in details.
+
+= Minimize HTTP Requests =
+
+Using *`JSCSSMergeServlet`* multiple JS or CSS files can be served together in one HTTP call. It also has an option to add appropriate expires header to take advantage of browser caching. 
+
+==Configure==
+
+Declare this servlet in your *`web.xml`* ( web descriptor file)
+
+{{{
+ <servlet>
+ 	<servlet-name>JSCSSMergeServlet</servlet-name>
+ 	<servlet-class>com.googlecode.webutilities.servlets.JSCSSMergeServlet</servlet-class>
+ 	<!-- This init param is optional and default value is minutes for 7 days in future. --> 
+ 	<init-param>
+		<param-name>expiresMinutes</param-name>
+		<param-value>14400</param-value> <!-- 10 days -->
+ 	</init-param>
+	<!-- This init param is also optional and default value is true. Set it false to override.-->
+        <init-param>
+		<param-name>useCache</param-name>
+		<param-value>false</param-value> 
+ 	</init-param>
+ </servlet>
+}}}
+ 
+Map this servlet to serve your JS and CSS resources
+{{{
+ <servlet-mapping>
+   <servlet-name>JSCSSMergeServlet</servlet-name>
+   <url-pattern>*.js</url-pattern>
+   <url-pattern>*.json</url-pattern>
+   <url-pattern>*.css</url-pattern>
+ </servlet-mapping>
+}}}
+ 
+==Use==
+
+In your web pages (HTML or JSP files) combine your multiple JS or CSS in one request as shown below.
+
+To serve multiple JS files (from same or different folder on server) through one HTTP request. Only last resource should end with appropriate extension.  
+{{{
+ <!-- To Serve following four JS files in one request
+
+  1. /appContext/js/libs/prototype.js
+  2. /appContext/js/controls/controls.js 
+  3. /appContext/js/controls/dragdrop.js 
+  4. /appContext/js/utils/util.js    -->
+
+ <script language="JavaScript" src="/appContext/js/libs/prototype,../controls/controls,dragdrop,../utils/util.js"></script>
+
+}}}
+ 
+To serve multiple CSS files through one HTTP request
+
+{{{
+  <!-- To Serve following 3 CSS files in one request
+
+  1. /appContext/css/common.css
+  2. /appContext/css/aqua/calendar.css
+  3. /appContext/css/aqua/skin.css   -->
+
+ <link rel="StyleSheet" href="/appContext/css/common,/css/aqua/calendar,skin.css"/>
+}}}
+ 
+Also if you wanted to serve them minified all together then you can also add *`YUIMinFilter`*. 
+
+== Customize ==
+
+Both init parameters of this Servlet are optional.
+
+  * *expiresMinutes* - Relative number of minutes (added to current time) to be set as Expires header. Default 10080. 
+  * *useCache* - to cache the earlier merged contents and serve from cache if found. Default true. 
+ 
+===Notes on Cache===
+
+If you have not set *useCache* init parameter to false then cache will be used and contents will be always served from cache if found. Sometimes you may not want to use cache or you may want to evict the cache then using URL parameters you can do that.
+
+*URL Parameters to skip or evict the cache*
+
+  * * `_skipcache_`* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
+  * * `_dbg_`*- same as above _skipcache_ parameter.
+  * * `_expirecache_`* - The cache will be cleaned completely. All existing cached contents will be cleaned.
+ 
+ Eg.
+{{{
+ <link rel="StyleSheet" href="/appContext/css/common,/css/aqua/calendar,skin.css?_dbg_=1"/>
+}}}
+ or
+{{{
+ <script language="JavaScript" src="/appContext/js/libs/prototype,../controls/controls,dragdrop,../utils/util.js?_expirecache_=1"></script>
+}}}
+ 
+=Add an Expires or a Cache-Control Header=
+==Configure==
+==Use==
+==Customize==
+
+= Minify JS and CSS Files =
+
+*`YUIMinFilter`* is implemented as Servlet Filter to enable on the fly minification of JS and CSS resources using YUICompressor internally. JS and CSS resources can be minified runtime by adding this filter. It also uses cache for better performance. It minifies once and adds to cache so that next time it doesn't minify same resource again but simply returns from the cache.
+
+==Configure==
+
+Declare this Filter in your *`web.xml`* ( web descriptor file)
+
+{{{
+ <filter>
+ 	<filter-name>yuiMinFilter</filter-name>
+ 	<filter-class>com.googlecode.webutilities.yuimin.YUIMinFilter</filter-class>
+ 	<!-- All the init params are optional and are equivalent to YUICompressor command line options --> 
+ 	<init-param>
+		<param-name>lineBreak</param-name>
+		<param-value>8000</param-value>
+ 	</init-param>
+ </filter>
+}}}
+ 
+Map this filter on your JS and CSS resources
+
+{{{
+ <filter-mapping>
+   <filter-name>yuiMinFilter</filter-name>
+   <url-pattern>*.js</url-pattern>
+   <url-pattern>*.json</url-pattern>
+   <url-pattern>*.css</url-pattern>
+ </filter-mapping>
+}}}
+
+== Use == 
+Once it is configured on js, css extensions, it served those resources minified on the fly when requested. There is no anything else needed. If you have also configured merge servlet then those multiple merged JS or CSS will also be minified on the fly using this.
+
+==Customize==
+
+All the init parameters are optional and are as explained below.
+
+  * *lineBreak* - equivalent to YUICompressor --line-break. Insert a line break after the specified column number
+  * *noMunge* - equivalent to YUICompressor --nomunge. Minify only, do not obfuscate. Default false.
+  * *preserveSemi* - equivalent to YUICompressor --preserve-semi. Preserve all semicolons. Default false. 
+  * *disableOptimizations* - equivalent to YUICompressor --disable-optimizations. Disable all micro optimizations. Default false. 
+  * *useCache* - to cache the earlier minified contents and serve from cache. Default true. 
+
+===Notes on Cache===
+
+If you have not set *useCache* init parameter to false then cache will be used by default and contents will be always served from cache if found. Sometimes you may not want to use cache or you may want to evict the cache then using URL parameters you can do that.
+
+*URL Parameters to skip or evict the cache*
+
+  * * `_skipcache_`* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
+  * * `_dbg_`*- same as above _skipcache_ parameter.
+  * * `_expirecache_`* - The cache will be cleaned completely. All existing cached contents will be cleaned.
+ 
+ Eg.
+{{{
+ <link rel="StyleSheet" href="/myapp/css/common.css?_dbg_=1"/>
+}}}
+ or
+{{{
+ <script language="JavaScript" src="/myapp/js/prototype.js?_expirecache_=1"></script>
+}}}
+
+===Limitations===
+
+Current version of `YUIMinFilter` *does not support charset option*.
+
+= Minify Inline JavaScript and CSS Code =
+
+*`YuiMinTag`* is the JSP custom tag to expose YUICompressor functionality in the JSP. Using the YuiMinTag inline CSS, JS code can also be compressed.
+
+==Configure==
+
+Declare the taglib and prefix in your JSP file.
+
+{{{
+<%@ taglib uri="http://webutilities.googlecode.com/taglib/yuimin" prefix="ymin" %>
+}}}
+ 
+==Use==
+
+Then use the ymin:minify tag to minify your inline JS.
+
+{{{
+ <ymin:minify type="js">
+        //...
+  	// your inline uncompressed JS
+  	//... 	
+ </ymin:minify>
+}}}
+ 
+You can also similarly use this tag to minify your inline style/CSS.
+
+{{{
+ <ymin:minify type="css">
+  	//...
+  	// your inline uncompressed CSS
+  	//...
+ </ymin:minify>
+}}}
+
+==Customize==
+
+It supports attributes similar to YUICompressor's command line options. Below are the attributes and their explanations. All these attributes are optional except *type*.
+  
+  * *type* - possible values are js or css. The only required attribute. Usage as seen above.
+  * *lineBreak* - equivalent to YUICompressor --line-break. Insert a line break after the specified column number
+  * *noMunge* - equivalent to YUICompressor --nomunge. Minify only, do not obfuscate. Default false.
+  * *preserveSemi* - equivalent to YUICompressor --preserve-semi. Preserve all semicolons. Default false. 
+  * *disableOptimizations* - equivalent to YUICompressor --disable-optimizations. Disable all micro optimizations. Default false. 
+
+===Limitations===
+
+Current version of `YuiMinTag` *does not support charset option*.
+
+= Gzip Components =
+
+== Configure ==
+== Use ==
+== Customize ==
+
+= Specify Character Encoding =
+== Configure ==
+==Use ==
+== Customize ==
