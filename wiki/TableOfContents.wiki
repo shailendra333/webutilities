@@ -1,11 +1,17 @@
-  * [WebUtilities ↑ Home]
-    * [About About]
-    * [About About]
-    * [About About]
-  * How To?
+  * [WebUtilities About]
+  * HOWTO with Examples
     * [MinimizeHTTPRequests Minimize HTTP Requests]
     * [AddExpiresHeader Add Expires Header]
     * [MinifyJSCSSFiles Minify JS/CSS files]
     * [MinifyJSCSSCodeBlocks Minify inline JS/CSS code]
     * [CompressionFilter Enable Compression]
     * [SpecifyCharEncoding Specify Character Encoding]
+  * By Components
+    * Servlets
+      * [MinimizeHTTPRequests JSCSSMergeServlet] 
+    * Filter
+      * [MinifyJSCSSFiles YUIMinFilter] 
+      * [CompressionFilter CompressionFilter]
+      * [SpecifyCharEncoding CharEncodingFilter]
+    * Tags 
+       * [MinifyJSCSSCodeBlocks YUIMinTag]
