@@ -1,4 +1,5 @@
 #sidebar TableOfContents
+<wiki:toc max_depth="2" />
 Using *`JSCSSMergeServlet`* multiple JS or CSS files can be served together in one HTTP call. It also has an option to add appropriate expires header to take advantage of browser caching. 
 
 ==Configure==
