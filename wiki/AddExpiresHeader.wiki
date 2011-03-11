@@ -43,7 +43,7 @@ Map this servlet to serve your JS,CSS and images.
 
 = Use =
 
-As a result of this, all your JS, CSS and Images file being requested will have appropriate Expires header added to them with specified value.
+As a result of this, all your JS, CSS and Images file being requested will have appropriate Expires header added to them with specified value. You don't need anything extra. Image files with matching extension as configured (in url-pattens) will automatically have proper Expires value as specified. Below examples are just for demonstration. 
 
 Requesting single JS file. Response of this will have appropriate Expired header.
 {{{
