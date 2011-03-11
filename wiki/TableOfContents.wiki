@@ -5,19 +5,4 @@
   * [MinifyJSCSSCodeBlocks Minify inline JS/CSS code]
   * [CompressionFilter Enable Compression]
   * [SpecifyCharEncoding Specify Character Encoding]
-  * By HOWTO Sections
-    * [MinimizeHTTPRequests Merge Multiple JS/CSS files in one request]
-    * [AddExpiresHeader Add Expires header for js,css or images]
-    * [CompressionFilter Serve compressed contents - gzip/compress/deflate]
-    * [MinifyJSCSSFiles Minify JS/CSS files on the fly]
-    * [MinifyJSCSSCodeBlocks Minify inline code in script or style tag]
-    * [SpecifyCharEncoding Specify Character Encoding]  
-  * By Components
-    * Servlets
-      * [MinimizeHTTPRequests JSCSSMergeServlet] 
-    * Filters
-      * [MinifyJSCSSFiles YUIMinFilter] 
-      * [CompressionFilter CompressionFilter]
-      * [SpecifyCharEncoding CharEncodingFilter]
-    * Tags 
-       * [MinifyJSCSSCodeBlocks YUIMinTag]
+ 
