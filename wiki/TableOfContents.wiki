@@ -1,4 +1,3 @@
-*TOC*
  * [WebUtilities WebUtilities]
  * [MinimizeHTTPRequests Minimize HTTP Requests]
  * [AddExpiresHeader Add Expires Header]
