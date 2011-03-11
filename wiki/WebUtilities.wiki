@@ -2,12 +2,10 @@
 
 _*WebUtilities* is a library of Java classes implemented as J2EE web components (Servlets, Filters, Tags etc.) to speed up the front-end of a web application on the fly._
 
-<wiki:toc max_depth="2" />
-
-= Introduction =
 Tools such as [http://developer.yahoo.com/yslow/ YSlow] or [http://code.google.com/speed/page-speed/ Page Speed] can be used to measure the client side performance. To improve the performance you have to apply the best practices [http://developer.yahoo.com/performance/rules.html suggested by these tools]. *WebUtilities* provides inbuilt components to apply following best practices in your web application.  
 
 == Features ==
+
  * Serve multiple JS or CSS files in one request
  * Add Expires header for JS, CSS and Image files to be cached by browser
  * Minify JS, CSS files on the fly
