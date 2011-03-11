@@ -7,13 +7,13 @@ _*WebUtilities* is a library of Java classes implemented as J2EE web components 
 = Introduction =
 Tools such as [http://developer.yahoo.com/yslow/ YSlow] or [http://code.google.com/speed/page-speed/ Page Speed] can be used to measure the client side performance. To improve the performance you have to apply the best practices [http://developer.yahoo.com/performance/rules.html suggested by these tools]. *WebUtilities* provides inbuilt components to apply following best practices in your web application.  
 
-==Features ==
-
- * [#Minimize_HTTP_Requests Minimize HTTP Requests]
- * [#Add_an_Expires_or_a_Cache-Control_Header Add an Expires or a Cache-Control Header]
- * [#Minify_JavaScript_and_CSS_Files Minify JavaScript and CSS Files] 
- * [#Minify_Inline_JavaScript_and_CSS_Code Minify Inline JavaScript and CSS Code] 
- * [#Gzip_Components Gzip Components] (since version 0.0.4)
+== Features ==
+ * Serve multiple JS or CSS files in one request
+ * Add Expires header for JS, CSS and Image files to be cached by browser
+ * Minify JS, CSS files on the fly
+ * Minify Inline CSS and JS code blocks
+ * Add Character Encoding to your response
+ * Server compressed contents (gzip/compress/deflate)
 
 Let's see how to apply those best practices in your application and speed it up :)
 
