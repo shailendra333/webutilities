@@ -1,8 +1,9 @@
+#summary a library of Java classes implemented as J2EE web components to speed up the front-end on the fly.
 #sidebar TableOfContents
 
-_*WebUtilities* is a library of Java classes implemented as J2EE web components (Servlets, Filters, Tags etc.) to speed up the front-end of a web application on the fly._
+Once the server response comes back to the browser, browser has to parse, download included resources and then display them to the user. It is said that 80% of the end-user response time is spent on the front-end. If front-end is not coded efficiently or browser friendly, it takes more time for browser to finally load and display the page to the end user. This makes application looks slow and sluggish to the user. 
 
-Tools such as [http://developer.yahoo.com/yslow/ YSlow] or [http://code.google.com/speed/page-speed/ Page Speed] can be used to measure the client side performance. To improve the performance you have to apply the best practices [http://developer.yahoo.com/performance/rules.html suggested by these tools]. *WebUtilities* provides inbuilt components to apply following best practices in your web application.  
+To make the front-end efficient and friendly to the browser, various performance practices have been suggested. We can measure the front-end performance using tools such as [http://developer.yahoo.com/yslow/ YSlow] or [http://code.google.com/speed/page-speed/ Page Speed]. These tools also suggest [http://developer.yahoo.com/performance/rules.html  the best practices]. *WebUtilities* provides inbuilt components to apply some of those best practices in your web application with minimal change.  
 
 == Features ==
 
