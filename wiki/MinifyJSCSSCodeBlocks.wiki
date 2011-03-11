@@ -1,8 +1,8 @@
 #sidebar TableOfContents
 
-*`YuiMinTag`* is the JSP custom tag to expose YUICompressor functionality in the JSP. Using the YuiMinTag inline CSS, JS code can also be compressed.
+*`YuiMinTag`* is the JSP custom tag to expose YUICompressor functionality in the JSP. Using the YuiMinTag inline CSS, JS code blocks can also be compressed.
 
-==Configure==
+=Configuration=
 
 Declare the taglib and prefix in your JSP file.
 
@@ -10,7 +10,7 @@ Declare the taglib and prefix in your JSP file.
 <%@ taglib uri="http://webutilities.googlecode.com/taglib/yuimin" prefix="ymin" %>
 }}}
  
-==Use==
+=Usage=
 
 Then use the ymin:minify tag to minify your inline JS.
 
@@ -32,7 +32,7 @@ You can also similarly use this tag to minify your inline style/CSS.
  </ymin:minify>
 }}}
 
-==Customize==
+=Customization=
 
 It supports attributes similar to YUICompressor's command line options. Below are the attributes and their explanations. All these attributes are optional except *type*.
   
