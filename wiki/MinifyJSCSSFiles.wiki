@@ -1,7 +1,7 @@
 #sidebar TableOfContents
 
 *`YUIMinFilter`* is implemented as Servlet Filter to enable on the fly minification of JS and CSS resources using YUICompressor internally. JS and CSS resources can be minified runtime by adding this filter. It also uses cache for better performance. It minifies once and adds to cache so that next time it doesn't minify same resource again but simply returns from the cache.
-
+<wiki:toc max_depth="2" />
 ==Configure==
 
 Declare this Filter in your *`web.xml`* ( web descriptor file)
