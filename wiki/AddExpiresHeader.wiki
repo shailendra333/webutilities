@@ -1,5 +1,76 @@
+#summary Add Expires header for static resources to be cached by the browser
 #sidebar TableOfContents
-Add expires header
-==Configure==
-==Use==
-==Customize==
+
+Static contents like JS, CSS, images etc. are less frequently changing resources. That means once sent to the browser, it is safe for browser to cache them locally and use from there instead of requesting again from the server. This is done by setting enough future dated value in Expires header of the response. This value tells browser about how much time to store this response contents in a cache. Such resources need to have expired header value adequate far in future (more 7 days or a month) or as never expires (more than a year). 
+
+Using Same JSCSSMergeServlet we can specify the Expires header value to JS, CSS resources and also images. Although we won't be requesting multiple images file using this Servlet but for images we can use it to add appropriate Expires value to images response. 
+
+<wiki:toc max_depth="1" />
+
+=Configuration=
+Same like what we did for [MinimizeHTTPRequests Minimize HTTP Requests].
+
+Declare this servlet in your *`web.xml`* ( web descriptor file)
+{{{
+ <servlet>
+ 	<servlet-name>JSCSSMergeServlet</servlet-name>
+ 	<servlet-class>com.googlecode.webutilities.servlets.JSCSSMergeServlet</servlet-class>
+ 	<!-- This init param is optional and default value is minutes for 7 days in future. --> 
+ 	<init-param>
+		<param-name>expiresMinutes</param-name>
+		<param-value>43200</param-value> <!-- for 30 days -->
+ 	</init-param>
+	<!-- This init param is also optional and default value is true. Set it false to override.-->
+        <init-param>
+		<param-name>useCache</param-name>
+		<param-value>false</param-value> 
+ 	</init-param>
+ </servlet>
+}}}
+ 
+Map this servlet to serve your JS,CSS and images.
+{{{
+ <servlet-mapping>
+   <servlet-name>JSCSSMergeServlet</servlet-name>
+   <url-pattern>*.js</url-pattern>
+   <url-pattern>*.json</url-pattern>
+   <url-pattern>*.css</url-pattern>
+   <url-pattern>*.png</url-pattern>
+   <url-pattern>*.jpg</url-pattern>
+   <url-pattern>*.gif</url-pattern>
+ </servlet-mapping>
+}}}
+
+= Use =
+
+As a result of this, all your JS, CSS and Images file being requested will have appropriate Expires header added to them with specified value.
+
+Requesting single JS file. Response of this will have appropriate Expired header.
+{{{
+<script language="JavaScript" src="/appContext/js/libs/prototype.js"></script>
+}}}
+
+Same will work for merged resources request.
+{{{
+<script language="JavaScript" src="/appContext/js/libs/prototype,scriptaculous,controls.js"></script>
+}}}
+
+Similarly for CSS (single or merged) request.
+
+Even images being requested either from CSS or HTML will have appropriate Expires header.
+
+{{{
+<img src="/images/logo.png">
+}}}
+{{{
+<style>
+   #logo {
+      background:url("/images/logo.png") no-repeat;
+   }
+</style>
+}}}
+
+=Customize=
+You can configure the init parameter expiresMinutes to any future time value (in minutes) you want. 
+
+  * *expiresMinutes* - Relative number of minutes (added to current time) to be set as Expires header. Default 10080 (7 days). 
