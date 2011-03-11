@@ -1,8 +1,9 @@
-  * [WebUtilities WebUtilities]
-  * [MinimizeHTTPRequests Minimize HTTP Requests]
-  * [AddExpiresHeader Add Expires Header]
-  * [MinifyJSCSSFiles Minify JS/CSS files]
-  * [MinifyJSCSSCodeBlocks Minify inline JS/CSS code]
-  * [CompressionFilter Enable Compression]
-  * [SpecifyCharEncoding Specify Character Encoding]
+*TOC*
+ * [WebUtilities WebUtilities]
+ * [MinimizeHTTPRequests Minimize HTTP Requests]
+ * [AddExpiresHeader Add Expires Header]
+ * [MinifyJSCSSFiles Minify JS/CSS files]
+ * [MinifyJSCSSCodeBlocks Minify inline JS/CSS code]
+ * [CompressionFilter Enable Compression]
+ * [SpecifyCharEncoding Specify Character Encoding]
  
