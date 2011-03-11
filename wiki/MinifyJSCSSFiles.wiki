@@ -2,7 +2,7 @@
 
 *`YUIMinFilter`* is implemented as Servlet Filter to enable on the fly minification of JS and CSS resources using YUICompressor internally. JS and CSS resources can be minified runtime by adding this filter. It also uses cache for better performance. It minifies once and adds to cache so that next time it doesn't minify same resource again but simply returns from the cache.
 <wiki:toc max_depth="2" />
-==Configure==
+=Configuration=
 
 Declare this Filter in your *`web.xml`* ( web descriptor file)
 
@@ -29,10 +29,10 @@ Map this filter on your JS and CSS resources
  </filter-mapping>
 }}}
 
-== Use == 
+= Usage =
 Once it is configured on js, css extensions, it served those resources minified on the fly when requested. There is no anything else needed. If you have also configured merge servlet then those multiple merged JS or CSS will also be minified on the fly using this.
 
-==Customize==
+=Customization=
 
 All the init parameters are optional and are as explained below.
 
