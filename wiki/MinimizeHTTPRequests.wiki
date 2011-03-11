@@ -1,6 +1,6 @@
 #sidebar TableOfContents
 
-Server calls are costly. Each new HTTP request has overhead of DNS lookup, request initialization, making actual request to get the data. For better performance it is [http://developer.yahoo.com/performance/rules.html#num_http advised] to make Fewer HTTP requests. We can reduce HTTP requests if we combine required multiple static resources together and get them in one request. 
+Server calls are costly. Each new HTTP request has overhead of DNS lookup, request initialization, making actual request to get the data. For better performance it is [http://developer.yahoo.com/performance/rules.html#num_http advised to make Fewer HTTP requests]. We can reduce HTTP requests if we combine required multiple static resources together and get them in one request. 
 
 Using *`JSCSSMergeServlet`* required multiple JS or CSS files can be served together in one HTTP call at runtime. There is no need to merge them manually or save in a single file. You just need to request them using single URL and put multiple resources separated by comma as shown below. It also has an ability to cache previously merged contents to improve the performance by avoiding reading the files again from the disk next time. 
 
