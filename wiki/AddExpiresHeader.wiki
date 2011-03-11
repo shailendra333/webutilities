@@ -3,7 +3,7 @@
 
 Static contents like JS, CSS, images etc. are less frequently changing resources. That means once sent to the browser, it is safe for browser to cache them locally and use from there instead of requesting again from the server. This is done by setting enough future dated value in Expires header of the response. This value tells browser about how much time to store this response contents in a cache. Such resources need to have expired header value adequate far in future (more 7 days or a month) or as never expires (more than a year). 
 
-Using Same JSCSSMergeServlet we can specify the Expires header value to JS, CSS resources and also images. Although we won't be requesting multiple image files using this Servlet but for images we can use it to add appropriate Expires value only. 
+Using Same *`JSCSSMergeServlet`* we can specify the Expires header value to JS, CSS resources and also images. Although we won't be requesting multiple image files using this Servlet but for images we can use it to add appropriate Expires value only. 
 
 <wiki:toc max_depth="1" />
 
