@@ -1,4 +1,6 @@
+#summary Minifying inline style and JS code blocks
 #sidebar TableOfContents
+<wiki:toc max_depth="1" />
 
 *`YuiMinTag`* is the JSP custom tag to expose YUICompressor functionality in the JSP. Using the YuiMinTag inline CSS, JS code blocks can also be compressed.
 
