@@ -5,7 +5,7 @@ This is not exactly performance improvement practice but is one good utility. It
 
 *`CharacterEncodingFilter`* can be used to set character encoding to the request if not already set. It also has an option to enforce the specified encoding irrespective of what is set by the page. Useful when you want to force certain character encoding across the pages.
 <wiki:toc max_depth="1" />
-= Configure =
+= Configuration=
 
 Declare this filter in your web.xml (web descriptor file).
 
@@ -38,11 +38,11 @@ Map this filter on your web requests
  </filter-mapping>
 }}}
 
-= Use =
+= Usage =
 
 Since it is Filter, you don't need anything extra to use it. Once configured and mapped as above on specified URL pattern, the filter will do it's job to apply said encoding as appropriate.
 
-= Customize =
+= Customization =
 
 You can customize it using init parameters. All the init parameters are optional and explained below.
 
