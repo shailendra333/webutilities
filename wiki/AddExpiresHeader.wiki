@@ -8,7 +8,7 @@ Using Same *`JSCSSMergeServlet`* we can specify the Expires header value to JS, 
 <wiki:toc max_depth="1" />
 
 =Configuration=
-Same like what we did for [MinimizeHTTPRequests Minimize HTTP Requests].
+Same like what we did for [MinimizeHTTPRequests Minimize HTTP Requests]. If you have already declared it to merge the CSS/JS files then you need not to declare it again. You can reuse the same one for adding expires header to JS/CSS and Image files. You can add define url-patten in mappings to include JS/CSS and Images.  
 
 Declare this servlet in your *`web.xml`* ( web descriptor file)
 {{{
