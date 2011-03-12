@@ -1,5 +1,9 @@
+#summary Handle compressed requests and return compressed response if accepted by the browser.
 #sidebar TableOfContents
- Gzip Components 
+
+This is again one of the [http://developer.yahoo.com/performance/rules.html#gzip performance best practice]. This can significantly reduce the time to send resources over the network because contents will be transferred in compressed format. There are various compression encodings like gzip, deflate, compress etc. HTTP request initiated by browser contains the information about whether browser is capable to handle the compressed contents. This is specified using `Accept-Encoding` HTTP header and it contains list of compressions supported by browser and also accepted quality factor (q). Server then can send the compressed response and specify compression encoding in `Content-Encoding` header of the response. Some clients may even be able to able to send request data itself in compressed format and in that case request `Content-Encoding` will specify the compression encoding.
+
+*`CompressionFilter`* of *webutilities* supports two way compression. That means it can uncompress the requests if compressed as well as respond with compressed contents to the accepted requests. Currently it implements three compression encodings -* gzip, compress and deflate*.
 
 == Configure ==
 == Use ==
