@@ -12,7 +12,7 @@ Declare this filter in your web.xml (web descriptor file).
 {{{
  <filter>
         <filter-name>characterEncodingFilter</filter-name>
-        <filter-class>com.googlecode.webutilities.CharacterEncodingFilter</filter-class>
+        <filter-class>com.googlecode.webutilities.filters.CharacterEncodingFilter</filter-class>
         <!-- init params  -->
         <init-param>
                 <param-name>encoding</param-name>
