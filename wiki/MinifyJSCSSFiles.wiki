@@ -3,7 +3,7 @@
 
 Minification removes unwanted characters to reduce the size. This is one of the performance improvement technique (http://developer.yahoo.com/performance/rules.html#minify). [http://developer.yahoo.com/yui/compressor/ YUICompressor] is the minification tool from Yahoo!. *`YUIMinFilter`* of *webutilities* uses it under the hood. 
 
-`YUIMinFilter`* is implemented as Servlet Filter to enable on the fly minification of JS and CSS resources using [http://developer.yahoo.com/yui/compressor/ YUICompressor] internally. JS and CSS resources can be minified runtime by adding this filter. It also uses cache for better performance. It minifies once and adds to cache so that next time it doesn't minify same resource again but simply returns from the cache.
+*`YUIMinFilter`* is implemented as Servlet Filter to enable on the fly minification of JS and CSS resources using [http://developer.yahoo.com/yui/compressor/ YUICompressor] internally. JS and CSS resources can be minified runtime by adding this filter. It also uses cache for better performance. It minifies once and adds to cache so that next time it doesn't minify same resource again but simply returns from the cache.
 <wiki:toc max_depth="2" />
 =Configuration=
 
