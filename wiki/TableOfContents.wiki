@@ -1,5 +1,8 @@
  * [WebUtilities WebUtilities]
  * [MinimizeHTTPRequests Minimize HTTP Requests]
+  * [MinimizeHTTPRequests#Configuration Configuration] 
+  * [MinimizeHTTPRequests#Usage Usage] 
+  * [MinimizeHTTPRequests#Customization Customization] 
  * [AddExpiresHeader Add Expires Header]
  * [MinifyJSCSSFiles Minify JS/CSS files]
  * [MinifyJSCSSCodeBlocks Minify inline JS/CSS code]
