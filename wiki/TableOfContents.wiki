@@ -1,8 +1,8 @@
  * [WebUtilities WebUtilities]
  * Minimize HTTP Requests 
   * [MinimizeHTTPRequests Details]
-  * [MinimizeHTTPRequests#Configuration Configuration] 
-  * [MinimizeHTTPRequests#Usage Usage] 
+  * [#Configuration Configuration] 
+  * [#Usage Usage] 
   * [MinimizeHTTPRequests#Customization Customization] 
  * Add Expires Header
   * [AddExpiresHeader  Details]
