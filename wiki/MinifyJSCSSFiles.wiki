@@ -12,7 +12,7 @@ Declare this Filter in your *`web.xml`* ( web descriptor file)
 {{{
  <filter>
  	<filter-name>yuiMinFilter</filter-name>
- 	<filter-class>com.googlecode.webutilities.yuimin.YUIMinFilter</filter-class>
+ 	<filter-class>com.googlecode.webutilities.filters.YUIMinFilter</filter-class>
  	<!-- All the init params are optional and are equivalent to YUICompressor command line options --> 
  	<init-param>
 		<param-name>lineBreak</param-name>
