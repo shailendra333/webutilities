@@ -1,4 +1,4 @@
-#summary Minify included JS and CSS files using *YUIMinFilter*
+#summary Minify included JS and CSS files using YUIMinFilter
 #sidebar TableOfContents
 
 Minification removes unwanted characters to reduce the size. This is one of the performance improvement technique (http://developer.yahoo.com/performance/rules.html#minify). [http://developer.yahoo.com/yui/compressor/ YUICompressor] is the minification tool from Yahoo!. *`YUIMinFilter`* of *webutilities* uses it under the hood. 
