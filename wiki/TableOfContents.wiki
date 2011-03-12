@@ -4,11 +4,11 @@
   * [MinimizeHTTPRequests#Configuration Configuration] 
   * [MinimizeHTTPRequests#Usage Usage] 
   * [MinimizeHTTPRequests#Customization Customization] 
- *Add Expires Header
+ * Add Expires Header
   * [AddExpiresHeader  Details]
   * [AddExpiresHeader#Configuration Configuration] 
   * [AddExpiresHeader#Usage Usage] 
-  * [ AddExpiresHeader#Customization Customization] 
+  * [AddExpiresHeader#Customization Customization] 
  * Minify JS/CSS files
   * [MinifyJSCSSFiles  Details]
   * [MinifyJSCSSFiles#Configuration Configuration] 
