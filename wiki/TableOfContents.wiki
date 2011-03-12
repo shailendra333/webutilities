@@ -1,11 +1,32 @@
  * [WebUtilities WebUtilities]
- * [MinimizeHTTPRequests Minimize HTTP Requests]
+ * Minimize HTTP Requests 
+  * [MinimizeHTTPRequests Details]
   * [MinimizeHTTPRequests#Configuration Configuration] 
   * [MinimizeHTTPRequests#Usage Usage] 
   * [MinimizeHTTPRequests#Customization Customization] 
- * [AddExpiresHeader Add Expires Header]
- * [MinifyJSCSSFiles Minify JS/CSS files]
- * [MinifyJSCSSCodeBlocks Minify inline JS/CSS code]
- * [CompressionFilter Enable Compression]
- * [SpecifyCharEncoding Specify Character Encoding]
+ *Add Expires Header
+  * [AddExpiresHeader  Details]
+  * [AddExpiresHeader#Configuration Configuration] 
+  * [AddExpiresHeader#Usage Usage] 
+  * [ AddExpiresHeader#Customization Customization] 
+ * Minify JS/CSS files
+  * [MinifyJSCSSFiles  Details]
+  * [MinifyJSCSSFiles#Configuration Configuration] 
+  * [MinifyJSCSSFiles#Usage Usage] 
+  * [MinifyJSCSSFiles#Customization Customization] 
+ * Minify inline JS/CSS code
+  * [MinifyJSCSSCodeBlocks  Details]
+  * [MinifyJSCSSCodeBlocks#Configuration Configuration] 
+  * [MinifyJSCSSCodeBlocks#Usage Usage] 
+  * [MinifyJSCSSCodeBlocks#Customization Customization] 
+ * Enable Compression
+  * [CompressionFilter  Details]
+  * [CompressionFilter#Configuration Configuration] 
+  * [CompressionFilter#Usage Usage] 
+  * [CompressionFilter#Customization Customization] 
+ * Specify Character Encoding
+  * [SpecifyCharEncoding  Details]
+  * [SpecifyCharEncoding#Configuration Configuration] 
+  * [SpecifyCharEncoding#Usage Usage] 
+  * [SpecifyCharEncoding#Customization Customization] 
  
