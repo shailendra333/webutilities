@@ -7,16 +7,16 @@
  * [SpecifyCharEncoding  Specify Character Encoding]
  * By Components
    * Servlets
-     * JSCSSMergeServlet
+     * `JSCSSMergeServlet`
        * [MinimizeHTTPRequests To Merge JS/CSS Files]   
        * [AddExpiresHeader To Add expires Header]   
    * Filters
-    * YUIMinFilter
+    * `YUIMinFilter`
       * [MinifyJSCSSFiles To minify JS/CSS files]   
-    * CompressionFilter
+    * `CompressionFilter`
       * [CompressionFilter To enable compression]   
-    * CharacterEncodingFilter
-      * [SpecifyCharEncoding To apply/force Character Encoding]   
+    * `CharacterEncodingFilter`
+      * [SpecifyCharEncoding To apply Char Encoding]   
    * Tags 
-    * YUIMinTag
+    * `YUIMinTag`
       * [MinifyJSCSSCodeBlocks To Minify inline JS/CSS code]   
