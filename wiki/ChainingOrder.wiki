@@ -4,7 +4,7 @@
 When you are configuring multiple filters and servlet on similar resources (urls), the response generation will chain through each one by one as per the order in which it is configured.
 
 The Recommended order is...
- #  [JSCSSMergeServet]
+ #  [JSCSSMergeServlet]
  {{{
  <!-- Declaration -->
  <servlet>
