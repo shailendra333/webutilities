@@ -1,9 +1,9 @@
 #summary Specify Character Encoding to the request/response.
 #sidebar TableOfContents
+[http://code.google.com/speed/page-speed/docs/rendering.html#SpecifyCharsetEarly Specifying a character set early] for your HTML documents allows the browser to begin executing scripts immediately.  
 
-This is not exactly performance improvement practice but is one good utility. It is useful in case when some browsers do not set proper character encoding even if mentioned in the page. 
+*`CharacterEncodingFilter`* can be used to set character encoding to the request if not already set. It also has an option to enforce the specified encoding irrespective of what is set by the page. Useful when you want to force certain character encoding across the pages. Also note that do not wrongly set charset on binary resources such images, videos etc.
 
-*`CharacterEncodingFilter`* can be used to set character encoding to the request if not already set. It also has an option to enforce the specified encoding irrespective of what is set by the page. Useful when you want to force certain character encoding across the pages.
 <wiki:toc max_depth="1" />
 = Configuration=
 
@@ -24,7 +24,7 @@ Declare this filter in your web.xml (web descriptor file).
         </init-param>
         <init-param>
                 <param-name>ignoreURLPattern</param-name>
-                <param-value>.*\.(png|jpg)</param-value> <!-- regular expression to be matched against URL to skip setting encoding on -->
+                <param-value>.*\.(png|jpg|gif)|.*/image?/.*</param-value> <!-- regular expression to be matched against URL to skip setting encoding on -->
         </init-param>
  </filter>
 }}}
