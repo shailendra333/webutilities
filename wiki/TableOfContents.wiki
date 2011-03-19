@@ -5,7 +5,7 @@
  * [MinifyJSCSSCodeBlocks Minify inline JS/CSS code]
  * [CompressionFilter Enable Compression]
  * [SpecifyCharEncoding  Specify Character Encoding]
- * [ResponseCacheFilter Cache Static Resources - server side]
+ * [ResponseCacheFilter Cache Responses - server side]
  * Components
    * Servlets
      * *`JSCSSMergeServlet`*
