@@ -1,0 +1,52 @@
+#summary Minifying inline style and JS code blocks
+#sidebar TableOfContents
+
+If your page contains `<script>` and `<style>` tags containing JS and CSS code blocks, you may prefer to minify that code blocks as well to reduce the page size. `YUIMinTag` can help you with that.
+
+*`YuiMinTag`* is the JSP custom tag to expose [http://developer.yahoo.com/yui/compressor/ YUICompressor] functionality in the JSP to minify/compress inline CSS, JS code blocks.
+
+<wiki:toc max_depth="1" />
+
+=Configuration=
+
+Declare the taglib and prefix in your JSP file.
+
+{{{
+<%@ taglib uri="http://webutilities.googlecode.com/taglib/wu" prefix="wu" %>
+}}}
+ 
+=Usage=
+
+Then use the *wu:minify* tag to minify your inline JS
+
+{{{
+ <wu:minify type="js">
+        //...
+  	// your inline uncompressed JS
+  	//... 	
+ </wu:minify>
+}}}
+ 
+OR CSS.
+
+{{{
+ <wu:minify type="css">
+  	//...
+  	// your inline uncompressed CSS
+  	//...
+ </wu:minify>
+}}}
+
+=Customization=
+
+It supports attributes similar to YUICompressor's command line options. Below are the attributes and their explanations. All these attributes are optional except *type*.
+  
+  * *type* - possible values are js or css. The only required attribute. Usage as seen above.
+  * *lineBreak* - equivalent to YUICompressor --line-break. Insert a line break after the specified column number
+  * *noMunge* - equivalent to YUICompressor --nomunge. Minify only, do not obfuscate. Default false.
+  * *preserveSemi* - equivalent to YUICompressor --preserve-semi. Preserve all semicolons. Default false. 
+  * *disableOptimizations* - equivalent to YUICompressor --disable-optimizations. Disable all micro optimizations. Default false. 
+
+===Limitations===
+
+Current version of minify tag *does not support charset option*.
