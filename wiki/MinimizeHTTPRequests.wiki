@@ -68,6 +68,31 @@ To serve multiple CSS files through one HTTP request
  
 Also if you wanted to serve them minified all together then you can also add *YUIMinFilter*. It is also advised that you configure *ResponseCacheFilter* so that the result of this merging will be cached to speed up further requests by avoiding reading, merging them again next time. 
 
+Because of such merging of CSS files, the relative URLs used for images in CSS are likely to be wrong. This servlets takes care replacing relative URLs to their proper absolute path.
+
+If  above calendar.css, which is inside /css/aqua folder has following rule. 
+{{{
+...
+.CalendarTitle{
+    ...
+    background-image: url(images/title.png);  
+    ...
+}
+}}}
+
+It means that there is /css/aqua/images folder and title.png is inside that. But because of above merged request, this reference will be wrong ("/appContext/css/common,/css/aqua/images/title.png").
+
+This servlet will correct it to proper absolute path and will serve it as shown below. 
+
+{{{
+...
+.CalendarTitle{
+    ...
+    background-image: url(/appContext/css/aqua/images/title.png);  
+    ...
+}
+}}}
+
 =Customization =
 
 Both init parameters of this Servlet are optional.
