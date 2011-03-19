@@ -5,7 +5,7 @@ Client side performance is important for better user experience. Optimizing and 
 
 It is said that 80% of the end-user response time is spent on the front-end. Once the server response comes back to the browser, browser has to parse, download included resources and then display them to the user. If front-end is not coded efficiently or browser friendly, it takes more time for browser to finally load and display the page to the end user. This makes application looks slow and sluggish to the user. 
 
-To make the front-end efficient and friendly to the browser, various performance practices have been suggested. We can measure the front-end performance using tools such as [http://developer.yahoo.com/yslow/ YSlow] or [http://code.google.com/speed/page-speed/ Page Speed]. These tools also suggest [http://developer.yahoo.com/performance/rules.html  the best practices]. *WebUtilities* provides inbuilt components to apply some of those best practices in your web application with minimal change.  
+To make the front-end efficient and friendly to the browser, various performance practices have been suggested. We can measure the front-end performance using tools such as [http://developer.yahoo.com/yslow/ YSlow] or [http://code.google.com/speed/page-speed/ Page Speed]. These tools also suggest [http://developer.yahoo.com/performance/rules.html  the best practices]. WebUtilities provides inbuilt components to apply some of those best practices in your web application with minimal change.  
 
 == Features ==
 
