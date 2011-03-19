@@ -8,3 +8,22 @@ We can cache the resources at client side using Cache-Control and Expires header
 == Configure ==
 == Use ==
 == Customize ==
+
+===Notes on Cache===
+
+Sometimes you may not want to use cache or you may want to evict the cache. Using below mentioned URL parameters you can do that.
+
+*URL Parameters to skip or evict the cache*
+
+  * * `_skipcache_`* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
+  * * `_dbg_`*- same as above _skipcache_ parameter.
+  * * `_expirecache_`* - The cache will be cleaned completely. All existing cached contents will be cleaned.
+ 
+ Eg.
+{{{
+ <link rel="StyleSheet" href="/myapp/css/common.css?_dbg_=1"/>
+}}}
+ or
+{{{
+ <script language="JavaScript" src="/myapp/js/prototype.js?_expirecache_=1"></script>
+}}}
