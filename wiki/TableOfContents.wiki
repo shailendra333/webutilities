@@ -19,7 +19,7 @@
     * *`CharacterEncodingFilter`*
       * [SpecifyCharEncoding To apply Char Encoding]   
     *  *`ResponseCacheFilter`*
-      * [ResponseCacheFilter Cache Static Resources - server side]   
+      * [ResponseCacheFilter Caching responses]   
    * Tags 
     * *`YUIMinTag`*
       * [MinifyJSCSSCodeBlocks To Minify inline JS/CSS code]   
