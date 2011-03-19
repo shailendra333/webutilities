@@ -6,6 +6,7 @@
  * [CompressionFilter Enable Compression]
  * [CharacterEncodingFilter  Specify Character Encoding]
  * [ResponseCacheFilter Cache Responses - server side]
+ * [ChainingOrder Filter Chaining]
  * Components
    * Servlets
      * *`JSCSSMergeServlet`*
