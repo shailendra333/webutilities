@@ -20,7 +20,17 @@ To make the front-end efficient and friendly to the browser, [http://developer.y
 Let's see how to apply those best practices in your application and speed it up :)
 
 ==Get started==
+ 
+ * Download Latest *[http://code.google.com/p/webutilities/downloads/list webutilities-x.y.z.jar]*
+ * Get latest *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* 
+ * Add these Jar files to your project class path (copy them to WEB-INF/lib)
+ * Configure your `web.xml` accordingly.
 
-To get started you will need to add latest *[http://code.google.com/p/webutilities/downloads/list webutilities-x.y.z.jar]* and *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* to your J2EE web project (by putting in WEB-INF/lib folder of your webapp). *WebUtilities* uses [http://developer.yahoo.com/yui/compressor/ YUICompressor] to minify JavaScript and CSS files on the fly.
+For Example and step by step Guide, Visit [WebUtilities Wiki Pages].
 
-Use left navigation to get the configuration, usage and customization of each component in details.
+== Third Party Dependencies ==
+
+ * *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar YUICompressor JAR]* 
+WebUtilities uses YUI Compressor internally to minify CSS and JS files.
+ 
+===Use left navigation to get the configuration, usage and customization of each component in details.===
