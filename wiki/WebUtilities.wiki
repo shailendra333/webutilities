@@ -13,6 +13,7 @@ To make the front-end efficient and friendly to the browser, various performance
  * Minify Inline CSS and JS code blocks
  * Add Character Encoding to your response
  * Server compressed contents (gzip/compress/deflate)
+ * Cache responses to speed loading by avoiding reprocessing
 
 Let's see how to apply those best practices in your application and speed it up :)
 
