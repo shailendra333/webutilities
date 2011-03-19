@@ -3,7 +3,8 @@
 
 Minification removes unwanted characters to reduce the size. This is one of the performance improvement technique (http://developer.yahoo.com/performance/rules.html#minify). [http://developer.yahoo.com/yui/compressor/ YUICompressor] is the minification tool from Yahoo!. *`YUIMinFilter`* of *webutilities* uses it under the hood. 
 
-*`YUIMinFilter`* is implemented as Servlet Filter to enable on the fly minification of JS and CSS resources using [http://developer.yahoo.com/yui/compressor/ YUICompressor] internally. JS and CSS resources can be minified runtime by adding this filter. It also uses cache for better performance. It minifies once and adds to cache so that next time it doesn't minify same resource again but simply returns from the cache.
+*`YUIMinFilter`* is implemented as Servlet Filter to enable on the fly minification of JS and CSS resources using [http://developer.yahoo.com/yui/compressor/ YUICompressor] internally. JS and CSS resources can be minified runtime by adding this filter. It is also advised to use ResponseCacheFilter so that result of this minification will be cached and served from cache next time.
+
 <wiki:toc max_depth="2" />
 =Configuration=
 
@@ -14,8 +15,8 @@ Declare this Filter in your *`web.xml`* ( web descriptor file)
  	<filter-name>yuiMinFilter</filter-name>
  	<filter-class>com.googlecode.webutilities.filters.YUIMinFilter</filter-class>
  	<!-- All the init params are optional and are equivalent to YUICompressor command line options --> 
- 	<init-param>
-		<param-name>lineBreak</param-name>
+ 	<init-param> 
+ 		<param-name>lineBreak</param-name>
 		<param-value>8000</param-value>
  	</init-param>
  </filter>
@@ -43,26 +44,6 @@ All the init parameters are optional and are as explained below.
   * *noMunge* - equivalent to YUICompressor --nomunge. Minify only, do not obfuscate. Default false.
   * *preserveSemi* - equivalent to YUICompressor --preserve-semi. Preserve all semicolons. Default false. 
   * *disableOptimizations* - equivalent to YUICompressor --disable-optimizations. Disable all micro optimizations. Default false. 
-  * *useCache* - to cache the earlier minified contents and serve from cache. Default true. 
-
-===Notes on Cache===
-
-If you have not set *useCache* init parameter to false then cache will be used by default and contents will be always served from cache if found. Sometimes you may not want to use cache or you may want to evict the cache then using URL parameters you can do that.
-
-*URL Parameters to skip or evict the cache*
-
-  * * `_skipcache_`* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
-  * * `_dbg_`*- same as above _skipcache_ parameter.
-  * * `_expirecache_`* - The cache will be cleaned completely. All existing cached contents will be cleaned.
- 
- Eg.
-{{{
- <link rel="StyleSheet" href="/myapp/css/common.css?_dbg_=1"/>
-}}}
- or
-{{{
- <script language="JavaScript" src="/myapp/js/prototype.js?_expirecache_=1"></script>
-}}}
 
 ===Limitations===
 
