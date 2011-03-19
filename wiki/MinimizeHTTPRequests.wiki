@@ -3,7 +3,7 @@
 
 Server calls are costly. Each new HTTP request has overhead of DNS lookup, request initialization, making actual request to get the data. For better performance it is [http://developer.yahoo.com/performance/rules.html#num_http advised to make Fewer HTTP requests]. We can reduce HTTP requests if we combine required multiple static resources together and get them in one request. 
 
-Using *`JSCSSMergeServlet`* multiple JS or CSS files can be served together in one HTTP call at runtime. There is no need to merge them manually or save in a single file. You just need to request them using single URL and put multiple resources separated by comma as shown below. It also has an ability to cache previously merged contents to improve the performance by avoiding reading the files again from the disk next time. 
+Using *`JSCSSMergeServlet`* multiple JS or CSS files can be served together in one HTTP call at runtime. There is no need to merge them manually or save in a single file. You just need to request them using single URL and put multiple resources separated by comma as shown below. 
 
 <wiki:toc max_depth="2" />
 =Configuration=
@@ -19,10 +19,10 @@ Declare this servlet in your *`web.xml`* ( web descriptor file)
 		<param-name>expiresMinutes</param-name>
 		<param-value>14400</param-value> <!-- 10 days -->
  	</init-param>
-	<!-- This init param is also optional and default value is true. Set it false to override.-->
+	<!-- This init param is also optional and default value is 'public'.-->
         <init-param>
-		<param-name>useCache</param-name>
-		<param-value>false</param-value> 
+		<param-name>cacheControl</param-name>
+		<param-value>public</param-value> 
  	</init-param>
  </servlet>
 }}}
@@ -66,30 +66,13 @@ To serve multiple CSS files through one HTTP request
  <link rel="StyleSheet" href="/appContext/css/common,/css/aqua/calendar,skin.css"/>
 }}}
  
-Also if you wanted to serve them minified all together then you can also add *`YUIMinFilter`*. 
+Also if you wanted to serve them minified all together then you can also add *YUIMinFilter*. It is also advised that you configure *ResponseCacheFilter* so that the result of this merging will be cached to speed up further requests by avoiding reading, merging them again next time. 
 
 =Customization =
 
 Both init parameters of this Servlet are optional.
 
-  * *expiresMinutes* - Relative number of minutes (added to current time) to be set as Expires header. Default 10080. 
-  * *useCache* - to cache the earlier merged contents and serve from cache if found. Default true. 
- 
-*Notes on Cache*
+  * *expiresMinutes* - Set expired header. Relative number of minutes (added to current time). Default 10080. 
+  * *cacheControl* - set Cache-Control header. Default value "public".
 
-If you have not set *useCache* init parameter to false then cache will be used and contents will be always served from cache if found. Sometimes you may not want to use cache or you may want to evict the cache then using URL parameters you can do that.
-
-*URL Parameters to skip or evict the cache*
-
-  * * `_skipcache_`* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
-  * * `_dbg_`*- same as above _skipcache_ parameter.
-  * * `_expirecache_`* - The cache will be cleaned completely. All existing cached contents will be cleaned.
- 
- Eg.
-{{{
- <link rel="StyleSheet" href="/appContext/css/common,/css/aqua/calendar,skin.css?_dbg_=1"/>
-}}}
- or
-{{{
- <script language="JavaScript" src="/appContext/js/libs/prototype,../utils/util.js?_expirecache_=1"></script>
-}}}
+Both these parameters are used to enable client side caching. For more details please look at [AddExpiresHeader Adding Expires/Cache-Control header] section.
