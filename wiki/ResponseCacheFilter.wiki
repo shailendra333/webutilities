@@ -5,11 +5,37 @@ We can cache the resources at client side using Cache-Control and Expires header
 
 *ResponseCacheFilter* is meant to serve that purpose. It caches the previously merged, minified and gziped response and serves from the cache next time. If any of resource in the request have been modified on the disk since last caching time, it also smartly reloads the cache with fresh contents and returns updated contents. 
 
-== Configure ==
-== Use ==
-== Customize ==
+== Configuration ==
 
-===Notes on Cache===
+Declare this Filter in your web.xml ( web descriptor file)
+
+{{{
+<filter>
+        <filter-name>responseCacheFilter</filter-name>
+        <filter-class>com.googlecode.webutilities.filters.ResponseCacheFilter</filter-class>
+ </filter>
+}}}
+
+Map this filter on your JS and CSS resources.
+
+{{{
+<filter-mapping>
+   <filter-name>responseCacheFilter</filter-name>
+   <url-pattern>*.js</url-pattern>
+   <url-pattern>*.json</url-pattern>
+   <url-pattern>*.css</url-pattern>
+ </filter-mapping>
+}}}
+
+== Usage ==
+
+Nothing much. Requested JS and CSS will pass through this Servlet and will get cached until it get modified on the disk. All subsequent responses will be much faster due to caching.
+
+== Customization ==
+
+It has no any init parameters to customize at this moment. But it has options to bypass, evict cache as and when needed using URL parameters. 
+
+=== URL parameters ===
 
 Sometimes you may not want to use cache or you may want to evict the cache. Using below mentioned URL parameters you can do that.
 
