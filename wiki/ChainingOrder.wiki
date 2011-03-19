@@ -1,4 +1,4 @@
-#summary Order or chaining when configuring multiple Filters
+#summary Order of chaining when configuring multiple Filters
 #sidebar TableOfContents
 
 When you are configuring multiple filters and servlet on similar resources (urls), the response generation will chain through each one by one as per the order in which it is configured.
