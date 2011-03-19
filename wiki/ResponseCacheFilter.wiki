@@ -1,4 +1,4 @@
-#summary In memory caching static resources responses at server side
+#summary In memory caching of static resources responses at server side
 #sidebar TableOfContents
 
 We can cache the resources at client side using Cache-Control and Expires header using JSCSSMergeServelet. However sometimes if client cache is disabled by user, the resources get read from disk again and then served. Disk operations are costly. In our case when we can chain the performance filters like merging (JSCSSMergeServlet) , minifying (YUIMinFilter) and then compressing (CompressorFilter). New request for the same resources will have to go through each filter though we had already performed those optimization few minutes/seconds ago. In such cases having caching mechanism at server side improves significant performance.
