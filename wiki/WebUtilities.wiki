@@ -1,7 +1,7 @@
 #summary a library of Java classes implemented as J2EE web components to speed up the front-end on the fly.
 #sidebar TableOfContents
 
-Client side performance is important for better user experience. Serving the client resources (JS, HTML, CSS, Images etc.) efficiently and in optimized fashion is key to client side performance. This Java Library provides such components to help you speed up Front-End of your J2EE application.
+Client side performance is important for better user experience. Optimizing and efficiently serving the static resources (JS, HTML, CSS, Images etc.) significantly increases client side performance. This Java Library (WebUtilities) provides web components to help you speed up Front-End of your J2EE application.
 
 It is said that 80% of the end-user response time is spent on the front-end. Once the server response comes back to the browser, browser has to parse, download included resources and then display them to the user. If front-end is not coded efficiently or browser friendly, it takes more time for browser to finally load and display the page to the end user. This makes application looks slow and sluggish to the user. 
 
