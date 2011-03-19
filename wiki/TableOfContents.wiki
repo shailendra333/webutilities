@@ -5,6 +5,7 @@
  * [MinifyJSCSSCodeBlocks Minify inline JS/CSS code]
  * [CompressionFilter Enable Compression]
  * [SpecifyCharEncoding  Specify Character Encoding]
+ * [ResponseCacheFilter Cache Static Resources - server side]
  * By Components
    * Servlets
      * *`JSCSSMergeServlet`*
@@ -17,6 +18,8 @@
       * [CompressionFilter To enable compression]   
     * *`CharacterEncodingFilter`*
       * [SpecifyCharEncoding To apply Char Encoding]   
+    *  *`ResponseCacheFilter*`
+      * [ResponseCacheFilter Cache Static Resources - server side]   
    * Tags 
     * *`YUIMinTag`*
       * [MinifyJSCSSCodeBlocks To Minify inline JS/CSS code]   
