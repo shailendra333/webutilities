@@ -6,7 +6,7 @@
  * [CompressionFilter Enable Compression]
  * [SpecifyCharEncoding  Specify Character Encoding]
  * [ResponseCacheFilter Cache Static Resources - server side]
- * WebUtilities Components
+ * Components
    * Servlets
      * *`JSCSSMergeServlet`*
        * [MinimizeHTTPRequests To Merge JS/CSS Files]   
