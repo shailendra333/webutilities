@@ -6,7 +6,7 @@ Client side performance is important for better user experience. Optimizing and 
 
 It is said that 80% of the end-user response time is spent on the front-end. To make the front-end efficient and friendly to the browser, [http://developer.yahoo.com/performance/rules.html various performance practices] have been suggested. We can measure page performance using tools such as [http://developer.yahoo.com/yslow/ YSlow] or [http://code.google.com/speed/page-speed/ Page Speed]. These tools validate page against the best practices and give the performance ratings/grade. WebUtilities provides inbuilt components to apply some of those best practices in your web application with minimal change to speed it up and get higher performance score. Below screenshots shows the difference it makes.
 
-<table border="0" cellpadding="20" align="center">
+<table border="0" width="100%"  align="center">
   <tr><th>Before - Without WebUtilities</th><th>After - Using WebUtilities</th></tr>
   <tr>
     <th>
