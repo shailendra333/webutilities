@@ -1,11 +1,12 @@
 #summary a library of Java classes implemented as J2EE web components to speed up the front-end on the fly.
 #sidebar TableOfContents
-
+<wiki:toc max_depth="2" />
+== Introduction ==
 Client side performance is important for better user experience. Optimizing and efficiently serving the static resources (JS, HTML, CSS, Images etc.) significantly increases client side performance. This Java Library (WebUtilities) provides web components to help you speed up Front-End of your J2EE application.
 
-It is said that 80% of the end-user response time is spent on the front-end. Once the server response comes to the browser, browser has to parse, download included resources and then display them to the user. If front-end is not coded browser friendly, it takes more time for browser to finally load and display the page to the end user. This makes application look slow and sluggish to the user. 
-
-To make the front-end efficient and friendly to the browser, [http://developer.yahoo.com/performance/rules.html various performance practices] have been suggested. We can measure page performance using tools such as [http://developer.yahoo.com/yslow/ YSlow] or [http://code.google.com/speed/page-speed/ Page Speed]. These tools validate your page against such best practices and give the performance ratings/grade. WebUtilities provides inbuilt components to apply some of those best practices in your web application with minimal change to speed it up and get higher performance score.
+It is said that 80% of the end-user response time is spent on the front-end. To make the front-end efficient and friendly to the browser, [http://developer.yahoo.com/performance/rules.html various performance practices] have been suggested. We can measure page performance using tools such as [http://developer.yahoo.com/yslow/ YSlow] or [http://code.google.com/speed/page-speed/ Page Speed]. These tools validate page against the best practices and give the performance ratings/grade. WebUtilities provides inbuilt components to apply some of those best practices in your web application with minimal change to speed it up and get higher performance score. Below screenshots shows the difference it makes.
+|| *Before* || *After* ||
+||http://webutilities.googlecode.com/svn/trunk/test/resources/img/BEFORE.png|| http://webutilities.googlecode.com/svn/trunk/test/resources/img/AFTER.png||
 
 == Features ==
 
@@ -28,9 +29,9 @@ Let's see how to apply those best practices in your application and speed it up 
 
 For Example and step by step Guide, Visit [WebUtilities Wiki Pages].
 
-== Third Party Dependencies ==
+== Third Party Dependency ==
 
  * *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar YUICompressor JAR]* 
 WebUtilities uses YUI Compressor internally to minify CSS and JS files.
  
-===Use left navigation to get the configuration, usage and customization of each component in details.===
+*Use left navigation to get the configuration, usage and customization of each component in details.*
