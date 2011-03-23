@@ -1,5 +1,5 @@
 #summary User documentation of webutilities v0.0.3.
-#labels Deprecated,Phase-Deploy,Using-Webutilities
+#labels v0.0.3,Phase-Deploy,Using-Webutilities
 <wiki:toc max_depth="2" />  
 = Introduction =
 
