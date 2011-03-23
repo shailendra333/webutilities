@@ -5,7 +5,7 @@
 
 *[CompressionFilter]* supports two way compression. It can uncompress the requests if compressed and can also respond with compressed contents to the requests who accept compressed contents (`Accept-Encoding`). Currently it implements three compression encodings - `gzip, compress and deflate`.
 
-== Configure ==
+== Configuration ==
 
 Declare this Filter in your web.xml ( web descriptor file)
 {{{
@@ -33,15 +33,30 @@ Declare this Filter in your web.xml ( web descriptor file)
 
 }}}
 
-== Use ==
+== Usage ==
 
 Nothing needed. As configured above, resources meeting the compression criteria will be compressed with appropriate compression encoding.  
 
-== Customize ==
+== Customization ==
 
 It can be customized using the init parameters.
 
   * *compressionThreshold* - Resource of size larger than this bytes will be compressed.
-  * *ignoreURLPattern* - Resources requests matching this regex will not be compressed.
-  * *ignoreMimes* - Responses of gives mimes will not be compressed.
-  * *ignoreUserAgentsPattern* - User agent names matching this pattern, will get uncompressed.
+
+Besides above parameter, each filter has following common parameters to better customize and configure it.
+
+  * *ignoreURLPattern* - to ignore the URLs matching this regex. e.g. `.*\.(jpg|png|gif)`.
+  * *acceptURLPattern* - to process the URLs matching this regex (ignore precedes). e.g. `.*\.(css|js|html)`.
+  * *ignoreMIMEPattern* - to ignore if the response mime matches this regex. e.g. `images/.*|video/.*`.
+  * *acceptMIMEPattern* - to process if the response mime matches this regex (ignore precedes). e.g. `text/css|text/html`.
+  * *ignoreUAPattern* - to ignore if request user agent name matches this regex. e.g. `MSIE|KHTML`.
+  * *acceptUAPattern* - to process if request user agent name matches this regex (ignore precedes). e.g. `WebKit|Opera`.
+
+== About these patterns ==
+
+ * If ignore pattern is not specified, it is treated as nothing to ignore.
+ * If accept pattern is not specified, it is treated as everything to accept.
+ * If resource matches both ignore and accept, ignore will take precedence.
+ * If resource matches ignore pattern but not accept pattern, obviously it will not be processed by the filter. 
+ * If resource doesn't match ignore pattern but match accept pattern, then it will be processed by the filter.
+ * If resource doesn't match ignore as well as accept pattern, it will not be processed.
