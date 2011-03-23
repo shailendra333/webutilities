@@ -46,7 +46,22 @@ It supports attributes similar to YUICompressor's command line options. Below ar
   * *noMunge* - equivalent to YUICompressor --nomunge. Minify only, do not obfuscate. Default false.
   * *preserveSemi* - equivalent to YUICompressor --preserve-semi. Preserve all semicolons. Default false. 
   * *disableOptimizations* - equivalent to YUICompressor --disable-optimizations. Disable all micro optimizations. Default false. 
+  * *charset* - equivalent to YUICompressor --charset. Charset to be used. Default UTF-8.
 
-===Limitations===
+Besides above parameters, each filter has following common parameters to better customize and configure it.
 
-Current version of minify tag *does not support charset option*.
+  * *ignoreURLPattern* - to ignore the URLs matching this regex. e.g. `.*\.(jpg|png|gif)`.
+  * *acceptURLPattern* - to process the URLs matching this regex (ignore precedes). e.g. `.*\.(css|js|html)`.
+  * *ignoreMIMEPattern* - to ignore if the response mime matches this regex. e.g. `images/.*|video/.*`.
+  * *acceptMIMEPattern* - to process if the response mime matches this regex (ignore precedes). e.g. `text/css|text/html`.
+  * *ignoreUAPattern* - to ignore if request user agent name matches this regex. e.g. `MSIE|KHTML`.
+  * *acceptUAPattern* - to process if request user agent name matches this regex (ignore precedes). e.g. `WebKit|Opera`.
+
+== About these patterns ==
+
+ * If ignore pattern is not specified, it is treated as nothing to ignore.
+ * If accept pattern is not specified, it is treated as everything to accept.
+ * If resource matches both ignore and accept, ignore will take precedence.
+ * If resource matches ignore pattern but not accept pattern, obviously it will not be processed by the filter. 
+ * If resource doesn't match ignore pattern but match accept pattern, then it will be processed by the filter.
+ * If resource doesn't match ignore as well as accept pattern, it will not be processed.
