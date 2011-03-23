@@ -9,18 +9,18 @@
  * [ChainingOrder Filter Chaining]
  * Components
    * Servlets
-     * *`JSCSSMergeServlet`*
+     * `JSCSSMergeServlet`
        * [JSCSSMergeServlet To Merge JS/CSS Files]   
        * [AddExpiresHeader To Add expires Header]   
    * Filters
-    * *`YUIMinFilter`*
+    * `YUIMinFilter`
       * [YUIMinFilter To minify JS/CSS files]   
-    * *`CompressionFilter`*
+    * `CompressionFilter`
       * [CompressionFilter To enable compression]   
-    * *`CharacterEncodingFilter`*
+    * `CharacterEncodingFilter`
       * [CharacterEncodingFilter To apply Char Encoding]   
-    *  *`ResponseCacheFilter`*
+    *  `ResponseCacheFilter`
       * [ResponseCacheFilter Caching responses]   
    * Tags 
-    * *`YUIMinTag`*
+    * `YUIMinTag`
       * [YUIMinTag To Minify inline JS/CSS code]   
