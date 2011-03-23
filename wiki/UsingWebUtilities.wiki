@@ -1,12 +1,6 @@
-#summary User documentation of webutilities.
-#labels Featured,Phase-Deploy,Using-Webutilities
-= Table of Contents =
-
-  * [#Introduction Introduction]
-  * [#JSCSSMergeServlet Merge multiple JS or CSS files in one HTTP request]
-  * [#YUIMinFilter Minify/Compress external JS and CSS files on the fly using YUI Compressor]
-  * [#YuiMinTag Compress inline JS or CSS code using YUI Compressor]
-
+#summary User documentation of webutilities v0.0.3.
+#labels Deprecated,Phase-Deploy,Using-Webutilities
+<wiki:toc max_depth="2" />  
 = Introduction =
 
 *webutilities* provides Set of classes implemented as J2EE components ([#JSCSSMergeServlet Servlet], [#YUIMinFilter Filter] and [#YuiMinTag CustomTag]) to help you speed up your front end performance. These components can be used to do some JS,CSS optimizations in running webapp like grouping multiple resources in one call or compressing them on the fly using YUI compressor.
