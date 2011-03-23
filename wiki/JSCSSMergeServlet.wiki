@@ -70,9 +70,10 @@ Also if you wanted to serve them minified all together then you can also add *YU
 
 = URLs in CSS =
 
-Because of such merging of CSS files, the relative URLs used for images in CSS are likely to be wrong. This servlets takes care replacing relative URLs to their proper absolute path.
+Because of such merging of CSS files, the relative URLs used for images in CSS are likely to be wrong. This servlets takes care of replacing relative URLs to their respective absolute path.
 
-If  above calendar.css, which is inside /css/aqua folder has following rule. 
+For Example. If  above calendar.css, which is inside /css/aqua folder has following rule. 
+
 {{{
 ...
 .CalendarTitle{
@@ -99,10 +100,8 @@ This behavior is controlled using init parameter *autoCorrectUrlsInCSS*
 
 =Customization =
 
-Both init parameters of this Servlet are optional.
-
   * *expiresMinutes* - Set expired header. Relative number of minutes (added to current time). Default 10080. 
   * *cacheControl* - set Cache-Control header. Default value "public".
-  * *autoCorrectUrlsInCSS* - whether to correct relative URLs in CSS and make them absoute
+  * *autoCorrectUrlsInCSS* - whether to correct relative URLs in CSS and make them absolute. Default true.
 
 Above first two parameters are used to enable client side caching. For more details please look at [AddExpiresHeader Adding Expires/Cache-Control header] section.
