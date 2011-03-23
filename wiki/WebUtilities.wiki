@@ -1,4 +1,5 @@
-#summary a library of Java classes implemented as J2EE web components to speed up the front-end on the fly.
+#summary Java library with inbuilt J2EE web components to speed up the front-end on the fly.
+#labels Featured,Phase-Deploy,Since-v0.0.4
 #sidebar TableOfContents
 <wiki:toc max_depth="2" />
 == Introduction ==
@@ -37,11 +38,11 @@ Let's see how to apply those best practices in your application and speed it up 
  * Add these Jar files to your project class path (copy them to WEB-INF/lib)
  * Configure your `web.xml` accordingly.
 
-For Example and step by step Guide, Visit [WebUtilities Wiki Pages].
+*For Examples and step by step Guide, Visit [TableOfContents Wiki].*
 
 == Dependency ==
 
- * *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar YUICompressor JAR]* 
+ * *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* 
 WebUtilities uses YUI Compressor internally to minify CSS and JS files.
  
 *Use left navigation to get the configuration, usage and customization of each component in details.*
