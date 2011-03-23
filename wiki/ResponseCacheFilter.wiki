@@ -33,8 +33,26 @@ Nothing much. Requested JS and CSS will pass through this Servlet and will get c
 
 == Customization ==
 
-It has no any init parameters to customize at this moment. But it has options to bypass, evict cache as and when needed using URL parameters. 
+  * *reloadTime* - interval in seconds after which resource cache will be reloaded
+  * *resetTime* - interval in seconds after which whole cache will be cleared 
 
+Besides above parameters, each filter has following common parameters to better customize and configure it.
+
+  * *ignoreURLPattern* - to ignore the URLs matching this regex. e.g. `.*\.(jpg|png|gif)`.
+  * *acceptURLPattern* - to process the URLs matching this regex (ignore precedes). e.g. `.*\.(css|js|html)`.
+  * *ignoreMIMEPattern* - to ignore if the response mime matches this regex. e.g. `images/.*|video/.*`.
+  * *acceptMIMEPattern* - to process if the response mime matches this regex (ignore precedes). e.g. `text/css|text/html`.
+  * *ignoreUAPattern* - to ignore if request user agent name matches this regex. e.g. `MSIE|KHTML`.
+  * *acceptUAPattern* - to process if request user agent name matches this regex (ignore precedes). e.g. `WebKit|Opera`.
+
+== About these patterns ==
+
+ * If ignore pattern is not specified, it is treated as nothing to ignore.
+ * If accept pattern is not specified, it is treated as everything to accept.
+ * If resource matches both ignore and accept, ignore will take precedence.
+ * If resource matches ignore pattern but not accept pattern, obviously it will not be processed by the filter. 
+ * If resource doesn't match ignore pattern but match accept pattern, then it will be processed by the filter.
+ * If resource doesn't match ignore as well as accept pattern, it will not be processed.
 === URL parameters ===
 
 Sometimes you may not want to use cache or you may want to evict the cache. Using below mentioned URL parameters you can do that.
@@ -43,7 +61,8 @@ Sometimes you may not want to use cache or you may want to evict the cache. Usin
 
   * * `_skipcache_`* - The JS or CSS request URL if contains this parameters the cache will not be used for it.
   * * `_dbg_`*- same as above _skipcache_ parameter.
-  * * `_expirecache_`* - The cache will be cleaned completely. All existing cached contents will be cleaned.
+  * * `_expirecache_`* - The cache for requested resource will be cleared. 
+  * * `_resetcache_`* - The whole cache will be reseted and all contents will cleared from cache
  
  Eg.
 {{{
