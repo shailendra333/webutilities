@@ -68,7 +68,7 @@ To serve multiple CSS files through one HTTP request
  
 Also if you wanted to serve them minified all together then you can also add *YUIMinFilter*. It is also advised that you configure *ResponseCacheFilter* so that the result of this merging will be cached to speed up further requests by avoiding reading, merging them again next time. 
 
-== URLs in CSS ==
+= URLs in CSS =
 
 Because of such merging of CSS files, the relative URLs used for images in CSS are likely to be wrong. This servlets takes care replacing relative URLs to their proper absolute path.
 
