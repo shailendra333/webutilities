@@ -2,6 +2,7 @@
 #labels Featured,Phase-Deploy,Since-v0.0.4
 #sidebar TableOfContents
 <wiki:toc max_depth="2" />
+*<= Use left sidebar for each component/feature details, configuration and customization*
 == Introduction ==
 Client side performance is important for better user experience. Optimizing and efficiently serving the static resources (JS, HTML, CSS, Images etc.) significantly increases client side performance. This Java Library (WebUtilities) provides web components to help you speed up Front-End of your J2EE application.
 
