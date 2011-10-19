@@ -12,10 +12,10 @@ It is said that 80% of the end-user response time is spent on the front-end. To 
   <tr><th>Before - Without WebUtilities</th><th>After - Using WebUtilities</th></tr>
   <tr>
     <th>
-http://webutilities.googlecode.com/svn/trunk/test/resources/img/BEFORE.png
+http://webutilities.googlecode.com/svn/trunk/src/test/resources/img/BEFORE.png
     </th>
     <th>
-http://webutilities.googlecode.com/svn/trunk/test/resources/img/AFTER.png
+http://webutilities.googlecode.com/svn/trunk/src/test/resources/img/AFTER.png
     </th>
   </tr> 
 </table>
