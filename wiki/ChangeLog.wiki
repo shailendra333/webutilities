@@ -7,7 +7,7 @@ This page lists down the changes in each release.
 
 = 0.0.5 | Nov 9, 2011 = 
 
-*New Features/ Enhancements*
+*New Features / Enhancements*
  * E-Tag
  * URL fingerprinting
  * New custom Tag to load resources
@@ -16,11 +16,12 @@ This page lists down the changes in each release.
  * Switched to SLF4J for logging
  * Support for Google Closure compiler (experimental)
  * Ability to provide custom context path for Image URLs in CSS 
-  
 
 *Bug Fixes*
  * [http://code.google.com/p/webutilities/issues/detail?id=20 Path separator issue on windows machines]
  * [http://code.google.com/p/webutilities/issues/detail?id=19 JSCSSMergeServlet does not split the combined Javascript request correctly]
+
+[http://code.google.com/p/webutilities/issues/list?can=1&q=Milestone%3D0.0.5&sort=milestone Complete List of issues fixed in v0.0.5]
 
 = 0.0.4 | Mar 23, 2011 =
 
