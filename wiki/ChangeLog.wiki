@@ -11,7 +11,7 @@ This page lists down the changes in each release.
  * E-Tag
  * URL fingerprinting
  * New custom Tag to load resources
- * Better and client side caching
+ * Better and smarter client side caching to detect and load only modified respources
  * Ability to use it as maven resource 
  * Switched to SLF4J for logging
  * Support for Google Closure compiler (experimental)
