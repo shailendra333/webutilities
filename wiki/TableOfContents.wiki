@@ -1,4 +1,4 @@
-#labels 0.0.4,Phase-Deploy
+#labels 0.0.4,Phase-Deploy,0.0.5
  * [WebUtilities About WebUtilities]
  * [JSCSSMergeServlet Minimize HTTP Requests] 
  * [AddExpiresHeader Add Expires Header]
@@ -7,6 +7,8 @@
  * [CompressionFilter Enable Compression]
  * [CharacterEncodingFilter  Specify Character Encoding]
  * [ResponseCacheFilter Cache Responses - server side]
+ * [EfficientCaching005 Efficient Caching - ETag, URL fingerprinting (v0.0.5)]
+ * [URLTag005 URL tag - to load static resources (v0.0.5)]
  * [ChainingOrder Filter Chaining]
  * Components
    * Servlets
