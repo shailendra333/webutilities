@@ -27,3 +27,5 @@
    * Tags 
     * `YUIMinTag`
       * [YUIMinTag To Minify inline JS/CSS code]   
+    * `URLTag (v0.0.5)`
+      * [URLTag To load static resources efficiently]   
