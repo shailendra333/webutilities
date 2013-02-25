@@ -27,7 +27,7 @@ The Recommended order is...
  </servlet-mapping>
 
 }}}
-# [CharacterEncodingFilter]
+ # [CharacterEncodingFilter]
 {{{
  <!-- Declaration -->
  <filter>
