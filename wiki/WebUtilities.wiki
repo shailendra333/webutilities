@@ -45,5 +45,8 @@ Let's see how to apply those best practices in your application and speed it up 
 
  * *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* 
 WebUtilities uses YUI Compressor internally to minify CSS and JS files.
+ * *[https://code.google.com/p/guava-libraries/ guava-xx.x.jar] *
+WebUtilities uses guava Cache implementation for Response Caching. 
+
  
 *Use left navigation to get the configuration, usage and customization of each component in details.*
