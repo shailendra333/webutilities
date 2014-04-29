@@ -48,5 +48,7 @@ WebUtilities uses YUI Compressor internally to minify CSS and JS files.
  * *[https://code.google.com/p/guava-libraries/ guava-xx.x.jar] *
 WebUtilities uses guava Cache implementation for Response Caching. 
 
+For exact dependencies, please refer maven repository at [http://maven-repository.com/artifact/com.googlecode.webutilities/webutilities].
+
  
 *Use left navigation to get the configuration, usage and customization of each component in details.*
