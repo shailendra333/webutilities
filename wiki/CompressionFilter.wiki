@@ -48,6 +48,7 @@ Nothing needed. As configured above, resources meeting the compression criteria 
 It can be customized using the init parameters.
 
   * *compressionThreshold* - Resource of size larger than this bytes will be compressed.
+  * *decompressMaxBytesPerSecond* - Max decompression rate (bytes per second) for compressed http request (since v0.0.7)
 
 Besides above parameter, each filter has following common parameters to better customize and configure it.
 
