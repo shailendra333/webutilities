@@ -46,4 +46,4 @@ All the init parameters are optional and are as explained below.
   * *disableOptimizations* - equivalent to YUICompressor --disable-optimizations. Disable all micro optimizations. Default false. 
   * *charset* - equivalent to YUICompressor --charset. Charset to be used. Default UTF-8.
 
-Besides above parameters, each filter has [CommonFilterParameters  common parameters] to better customize and configure it.
+Besides above parameters, each filter has [CommonFilterParameters these  common init parameters] to better customize and configure it.
