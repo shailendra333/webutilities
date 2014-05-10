@@ -22,8 +22,8 @@ Declare this Filter in your web.xml ( web descriptor file)
                 <param-value>.*\.(flv|mp3|mpg)</param-value> <!-- regex -->
         </init-param>
         <init-param> 
-                <param-name>ignoreMimes</param-name>
-                <param-value>images/*,video/*, multipart/x-gzip</param-value> <!-- ignore -->
+                <param-name>ignoreMIMEPattern</param-name>
+                <param-value>image/.*|video/.*|multipart/x-gzip</param-value> <!-- ignore -->
         </init-param>
         <init-param> 
                 <param-name>ignoreUserAgentsPattern</param-name>
