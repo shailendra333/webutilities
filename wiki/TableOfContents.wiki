@@ -16,6 +16,7 @@
        * [JSCSSMergeServlet To Merge JS/CSS Files]   
        * [AddExpiresHeader To Add expires Header]   
    * Filters
+    *  [CommonFilterParameters Common Filter Parameters]
     * `YUIMinFilter`
       * [YUIMinFilter To minify JS/CSS files]   
     * `CompressionFilter`
@@ -24,7 +25,6 @@
       * [CharacterEncodingFilter To apply Char Encoding]   
     *  `ResponseCacheFilter`
       * [ResponseCacheFilter Caching responses]   
-    *  [CommonFilterParameters Common Filter Parameters]
    * Tags 
     * `YUIMinTag`
       * [YUIMinTag To Minify inline JS/CSS code]   
