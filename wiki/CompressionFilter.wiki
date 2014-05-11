@@ -49,5 +49,6 @@ It can be customized using the init parameters.
 
   * *compressionThreshold* - Resource of size larger than this bytes will be compressed.
   * *decompressMaxBytesPerSecond* - Max decompression rate (bytes per second) for compressed http request (since v0.0.7)
+  * *maxDecompressedRequestSizeInBytes* - Max decompressed request size. If the request payload is larger than this then decompression throws IO Exception. (since v0.0.7)
 
 Besides above parameters, each filter has [CommonFilterParameters these  common init parameters] to better customize and configure it.
