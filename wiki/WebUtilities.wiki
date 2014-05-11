@@ -34,21 +34,10 @@ Let's see how to apply those best practices in your application and speed it up 
 
 ==Get started==
  
- * Download Latest *[http://code.google.com/p/webutilities/downloads/list webutilities-x.y.z.jar]*
- * Get latest *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* 
- * Add these Jar files to your project class path (copy them to WEB-INF/lib)
- * Configure your `web.xml` accordingly.
-
-*For Examples and step by step Guide, Visit [TableOfContents Wiki].*
+*For Examples and step by step Guide, Visit [TableOfContents Wiki]. Please Refer section on the left.*
 
 == Dependency ==
 
- * *[http://yuilibrary.com/downloads/#yuicompressor yuicompressor-x.y.z.jar]* 
-WebUtilities uses YUI Compressor internally to minify CSS and JS files.
- * *[https://code.google.com/p/guava-libraries/ guava-xx.x.jar] *
-WebUtilities uses guava Cache implementation for Response Caching. 
-
 For exact dependencies, please refer maven repository at [http://maven-repository.com/artifact/com.googlecode.webutilities/webutilities].
-
  
 *Use left navigation to get the configuration, usage and customization of each component in details.*
