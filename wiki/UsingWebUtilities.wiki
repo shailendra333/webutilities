@@ -29,7 +29,7 @@ Declare this servlet in your *`web.xml`* ( web descriptor file)
 {{{
  <servlet>
  	<servlet-name>JSCSSMergeServlet</servlet-name>
- 	<servlet-class>com.googlecode.webutilities.JSCSSMergeServlet</servlet-class>
+ 	<servlet-class>com.googlecode.webutilities.servlets.JSCSSMergeServlet</servlet-class>
  	<!-- This init param is optional and default value is minutes for 7 days in future. To expire in the past use negative value. --> 
  	<init-param>
 		<param-name>expiresMinutes</param-name>
